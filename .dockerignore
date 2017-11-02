@@ -1,0 +1,6 @@
+logs
+node_modules
+scripts
+test
+.*
+README.md

@@ -1,0 +1,48 @@
+{
+  "name": "koa-ts",
+  "version": "1.1.0",
+  "description": "",
+  "main": "build/app.js",
+  "scripts": {
+    "start": "nodemon build/app.js",
+    "dev": "npm run watch & npm run start",
+    "build": "npm run clear & tsc",
+    "watch": "npm run clear & tsc -w",
+    "test": "mocha",
+    "lint": "tslint \"src/**/*.ts\" ",
+    "clear": "rimraf build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqp": "^0.2.6",
+    "bunyan": "^1.8.12",
+    "bunyan-rotating-file-stream": "^1.6.3",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-bouncer": "^6.0.4",
+    "koa-compress": "^2.0.0",
+    "koa-favicon": "^2.0.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.2.1",
+    "moment": "^2.19.1",
+    "mysql": "^2.14.0",
+    "mysql2": "^1.4.2",
+    "node-schedule": "^1.2.5",
+    "sequelize": "^4.4.2",
+    "source-map-support": "^0.5.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.39",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^8.0.33",
+    "@types/node-schedule": "^1.2.0",
+    "@types/sequelize": "^4.0.76",
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  }
+}
