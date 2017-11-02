@@ -33,6 +33,3 @@ output.tar.gz
 runtime/
 app/
 build/
-
-# Typescript v1 declaration files
-typings/
