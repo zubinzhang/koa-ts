@@ -1,10 +1,12 @@
-#cw-epaper-api
+#koa-ts
 
-作业相关定时任务
+koa typescript模板
 
 ## 启动
 ```sh
 npm install #安装依赖
+
+npm run build 
 
 npm start
 ```
