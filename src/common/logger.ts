@@ -22,7 +22,6 @@ appLog.log = function (...items) {
   appLog.info(args.join(' '));
 };
 
-
 /**
  * 创建日志对象
  *
@@ -34,12 +33,9 @@ function createLogger() {
     ? ''
     : `${process.env.pm_id}-`;
 
-  const options = {
+  const options: LogOption = {
     name: config.name,
     streams: [{
-      level: 'trace',
-      stream: process.stdout,
-    }, {
       level: 'info',
       type: 'raw',
       stream: new RotatingFileStream({
@@ -54,6 +50,13 @@ function createLogger() {
       }),
     }],
   };
+
+  if (config.debug) {
+    options.streams.push({
+      level: 'trace',
+      stream: process.stdout,
+    });
+  }
 
   return bunyan.createLogger(options);
 }

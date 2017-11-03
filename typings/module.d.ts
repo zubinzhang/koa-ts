@@ -8,4 +8,7 @@ interface ResData<T> {
   uuid: string;
 }
 
-interface IContext { }
+interface LogOption {
+  name: string;
+  streams: Array<any>;
+}

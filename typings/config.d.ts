@@ -2,6 +2,8 @@
  * Created by Zubin on 2017-10-30 17:15:44
  */
 
+// import {} from 'sequelize';
+
 /**
  * rabbitmq配置
  * 
@@ -36,6 +38,7 @@ interface DBConfig {
     port: number;
     dialect: string;
     timezone: string;
+    timestamps?: boolean;
     pool: {
       max: number;
       min: number;
@@ -55,6 +58,7 @@ interface DBConfig {
  * @interface Config
  */
 interface Config {
+  debug?: boolean;
   name?: string,
   port: number;
   db: {

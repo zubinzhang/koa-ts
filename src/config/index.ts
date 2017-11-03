@@ -9,5 +9,6 @@ const configEnv = require(`./config_${env}`); // 根据环境变量动态加载�
 const config: Config = configEnv.default || configEnv;
 
 config.name = packageJson.name;
+config.debug = env === 'development';
 
 export default config as Config;
