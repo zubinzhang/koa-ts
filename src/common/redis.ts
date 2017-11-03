@@ -10,7 +10,7 @@ import config from '../config';
 class RedisHelper extends Redis {
   static db: RedisHelper;
   static init() {
-  
+
     if (!RedisHelper.db) {
       let server;
       config.redis.retryStrategy = (times) => {
@@ -28,7 +28,7 @@ class RedisHelper extends Redis {
 
         return 240;
       };
-      
+
       server = new RedisHelper(config.redis);
       server.on('connect', () => {
         console.info('redis正在连接中...');
@@ -53,7 +53,7 @@ class RedisHelper extends Redis {
       server.on('end', () => {
         console.info('redis连接已经释放');
       });
-      
+
       //     /**
       //  * 从缓存获取数据
       //  *

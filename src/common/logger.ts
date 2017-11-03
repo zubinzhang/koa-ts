@@ -33,7 +33,7 @@ function createLogger() {
     ? ''
     : `${process.env.pm_id}-`;
 
-  const options: LogOption = {
+  const options: ILogOption = {
     name: config.name,
     streams: [{
       level: 'info',

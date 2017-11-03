@@ -1,6 +1,6 @@
 // import { Context } from 'koa';
 // 定义api返回结构
-interface ResData<T> {
+interface IResData<T> {
   ret: number;
   errcode: number;
   msg?: string;
@@ -8,7 +8,7 @@ interface ResData<T> {
   uuid: string;
 }
 
-interface LogOption {
+interface ILogOption {
   name: string;
   streams: Array<any>;
 }

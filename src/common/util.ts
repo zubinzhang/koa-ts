@@ -18,9 +18,9 @@ import { v4 as uuidV4 } from 'uuid';
  * @param {number} [ret=retCodeEnum.success] 
  * @param {number} [errcode=errCodeEnum.success] 
  * @param {string} [msg='success'] 
- * @returns {ResData<T>} 
+ * @returns {IResData<T>} 
  */
-export function formatResData<T>(data: T, ret: number = retCodeEnum.success, errcode: number = errCodeEnum.success, msg: string = 'success'): ResData<T> {
+export function formatResData<T>(data: T, ret: number = retCodeEnum.success, errcode: number = errCodeEnum.success, msg: string = 'success'): IResData<T> {
   return {
     ret,
     errcode,

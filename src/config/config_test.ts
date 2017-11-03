@@ -59,6 +59,9 @@ export default {
     lazyConnect: false,
     keyPrefix: '',
   },
+  mongo: {
+    epaperLog: 'mongodb://192.168.2.163:27017/epaperLog?poolSize=50',
+  },
   rabbitmq,
   submitQueueName: 'queue.epaper.submit.test',
   submitExchangeName: 'queue.epaper.submit.test',

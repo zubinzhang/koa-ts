@@ -1,7 +1,7 @@
 /*
  * Created by Zubin on 2017-10-31 14:18:45
  */
-import {Config, DBConfig, RabbitMqConfig} from '../../typings/config';
+import { Config, DBConfig, RabbitMqConfig } from '../../typings/config';
 
 /**
  * 投产数据库配置
@@ -51,13 +51,16 @@ export default {
     epaperWork,
   },
   redis: {
-    host: 'a4bcad9c53a1443b.redis.rds.aliyuncs.com',
+    host: '',
     port: 6379,
-    password: 'cwToken201512',
+    password: '',
     db: 2,
     connectTimeout: 5000,
     lazyConnect: false,
     keyPrefix: '',
+  },
+  mongo: {
+    epaperLog: 'mongodb://192.168.2.163:27017/epaperLog?poolSize=50',
   },
   rabbitmq,
   submitQueueName: 'queue.epaper.submit',

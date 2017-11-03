@@ -49,6 +49,9 @@ export interface Config {
   db: {
     epaperWork?: DBConfig;
   };
+  mongo?: {
+    epaperLog?: string,
+  };
   redis?: RedisOptions;
   rabbitmq: RabbitMqConfig;
   submitQueueName: string;
