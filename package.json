@@ -20,6 +20,7 @@
     "amqp": "^0.2.6",
     "bunyan": "^1.8.12",
     "bunyan-rotating-file-stream": "^1.6.3",
+    "ioredis": "^3.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-bouncer": "^6.0.4",
@@ -36,6 +37,7 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
+    "@types/ioredis": "0.0.27",
     "@types/koa": "^2.0.39",
     "@types/moment": "^2.13.0",
     "@types/node": "^8.0.33",

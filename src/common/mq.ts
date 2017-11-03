@@ -20,7 +20,6 @@ export const submitMQ = rabbitmq.init({
   },
 });
 
-
 /**
  * mq心跳监测
  * 

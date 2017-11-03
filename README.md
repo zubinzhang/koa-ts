@@ -1,5 +1,5 @@
-# cw-epape-listenspeak
-听说模考批改
+# koa-ts
+koa demo
 
 ## 启动
 ```sh
@@ -12,7 +12,7 @@ npm start # 启动项目
 ```sh
 npm run build # babel编译
 npm run dev # babel即时编译并运行，用于本地开发
-npm run model # 生成model
+npm run model # 生成model,默认目录在src/model/[dbname]下
 ```
 
 

@@ -6,7 +6,7 @@ import * as Sequelize from 'sequelize';
 import config from '../config';
 import { getModels } from './epaperwork/db.tables';
 
-// 建立数据库连接
+// 新建数据库实例
 const workSquelize = new Sequelize(
   config.db.epaperWork.database,
   config.db.epaperWork.userName,

@@ -2,14 +2,15 @@
  * Created by Zubin on 2017-10-30 17:15:44
  */
 
-// import {} from 'sequelize';
+import { RedisOptions } from 'ioredis'
+import { Options as seqOptions } from 'sequelize';
 
 /**
  * rabbitmq配置
  * 
  * @interface RabbitMqConfig
  */
-interface RabbitMqConfig {
+export interface RabbitMqConfig {
   connOptions: {
     host: string;
     port: number;
@@ -29,27 +30,11 @@ interface RabbitMqConfig {
  * 
  * @interface DBConfig
  */
-interface DBConfig {
+export interface DBConfig {
   userName: string;
   password: string;
   database: string;
-  dbConfig: {
-    host: string;
-    port: number;
-    dialect: string;
-    timezone: string;
-    timestamps?: boolean;
-    pool: {
-      max: number;
-      min: number;
-    };
-    dialectOptions: {
-      charset: string;
-      collate: string;
-      supportBigNumbers: boolean;
-      bigNumberStrings: boolean;
-    };
-  };
+  dbConfig: seqOptions;
 }
 
 /**
@@ -57,13 +42,14 @@ interface DBConfig {
  * 
  * @interface Config
  */
-interface Config {
+export interface Config {
   debug?: boolean;
   name?: string,
   port: number;
   db: {
-    epaperWork: DBConfig;
+    epaperWork?: DBConfig;
   };
+  redis?: RedisOptions;
   rabbitmq: RabbitMqConfig;
   submitQueueName: string;
   submitExchangeName: string;
