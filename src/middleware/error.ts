@@ -1,12 +1,16 @@
 /*
  * Created by Zubin on 2017-11-02 12:06:44
  */
+
+import * as moment from 'moment';
+
 import { Context, Middleware } from 'koa';
 import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
 import { ValidationError } from 'koa-bouncer';
 import appLog from '../common/logger';
 import { formatResData } from '../common/util';
+import { mongoModel } from '../model';
 
 export function handleError(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
@@ -41,14 +45,14 @@ export function handleError(): Middleware {
       if (ctx.req.method.toUpperCase() === 'POST') {
         const urls = ctx.url.split('/');
 
-        // epaperLog.currentLog().create({
-        //   url: ctx.url,
-        //   createAt: moment().format('YYYY-MM-DD HH:mm:ss'),
-        //   header: ctx.headers,
-        //   reqData: ctx.request.body,
-        //   resData: ctx.body,
-        //   name: urls[urls.length - 1],
-        // }).catch(() => true);
+        mongoModel.logger.create({
+          url: ctx.url,
+          createAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+          header: ctx.headers,
+          reqData: ctx.request.body,
+          resData: ctx.body,
+          name: urls[urls.length - 1],
+        }).catch(() => true);
       }
       appLog.log('=======end:结束本次请求跟踪=======\n');
     }

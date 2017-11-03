@@ -4,7 +4,8 @@
 import { Config } from '../../typings/config';
 
 const packageJson = require('../../package.json');
-const env = process.env.NODE_ENV || process.argv[2] || 'development';
+const env = process.env.NODE_ENV || 'development';
+
 const configEnv = require(`./config_${env}`); // 根据环境变量动态加载配置文件
 
 const config: Config = configEnv.default || configEnv;

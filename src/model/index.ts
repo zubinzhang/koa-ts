@@ -6,9 +6,13 @@ import * as mondoModels from './mongo/db';
 import * as mongoose from 'mongoose';
 import * as workModels from './epaperwork/db.tables';
 
+import appLog from '../common/logger';
 import config from '../config';
 
 // 新建mysql数据库实例
+config.db.epaperWork.dbConfig.logging = sql => {
+  appLog.log(sql);
+};
 const workSquelize = new Sequelize(
   config.db.epaperWork.database,
   config.db.epaperWork.userName,
