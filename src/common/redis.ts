@@ -97,4 +97,6 @@ class RedisHelper extends Redis {
   }
 }
 
+export const redis = RedisHelper.init();
+
 export default RedisHelper;

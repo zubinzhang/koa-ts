@@ -5,12 +5,12 @@
 import { workModel, workSquelize } from '../../model';
 
 import { Context } from 'koa';
-import Redis from '../../common/redis';
+import { redis } from '../../common/redis';
 
 export async function ttt(ctx: Context) {
   // workSquelize
-  const data = await Redis.init().getJsonData('tttt');
-  Redis.init().set('tttt', '{"a":1}', 'EX', 60);
+  const data = await redis.getJsonData('tttt');
+  redis.set('tttt', '{"a":1}', 'EX', 60);
 
   ctx.success(data);
 }
