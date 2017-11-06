@@ -19,6 +19,7 @@ import { handleError } from './middleware/error';
 
 const app = new Koa();
 
+// 中间件
 app.use(koaLogger());
 app.use(koaFavicon('../favicon.ico'));
 app.use(koaCompress());
@@ -27,7 +28,7 @@ app.use(handleError());
 app.use(koaValidate.middleware());
 app.use(extendContext());
 
-
+// 路由
 const router = Router();
 
 router.all('/', ctx => {
@@ -38,12 +39,8 @@ router.all('/*', autoRoute());
 app.use(router.routes())
   .use(router.allowedMethods());
 
-// app.use(async (ctx) => {
-//   ctx.status = 404;
-//   ctx.error('404');
-// });
 
-
+// 捕捉全局错误
 app.on('error', (err, ctx) => {
   console.log('app-on-error事件:' + err.toString() + 'ctx.request:' + JSON.stringify(ctx.request));
 });

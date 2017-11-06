@@ -24,14 +24,27 @@ export class CWErrors extends Error implements IError {
  */
 export function extendContext(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
+
+    /**
+     * 执行成功返回信息
+     */
     ctx.success = function <T>(data: T) {
       ctx.body = formatResData<T>(data);
     };
 
+    /**
+     * 抛出异常
+     */
     ctx.error = (msg: string, errCode: number = retCodeEnum.serverError, retCode: number = errCodeEnum.apiError) => {
       throw new CWErrors('接口口内部异常', errCode, retCode);
     };
 
+    /**
+     * 判断http method
+     * 
+     * @param {(string | Array<string>)} [passMethod='GET'] 
+     * @returns 
+     */
     ctx.allow = (passMethod: string | Array<string> = 'GET') => {
       let validateResult = false;
       if (typeof passMethod === 'string') {
@@ -48,6 +61,9 @@ export function extendContext(): Middleware {
       return ctx;
     };
 
+    /**
+     * 判断content-type是否application/json
+     */
     ctx.allowJson = (() => {
       if (!ctx.is('json')) {
         ctx.error('content-type错误,必须是application/json');

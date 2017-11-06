@@ -3,9 +3,13 @@
  */
 import * as amqp from 'amqp';
 
+/**
+ * mq类
+ */
 class MQ {
   // static _mq = {};
 
+  // 初始化mq
   static init(mqConfig) {
     const { exchangeName } = mqConfig;
 
@@ -54,6 +58,14 @@ class MQ {
     });
   }
 
+  /**
+   * 发布消息
+   * 
+   * @param {any} body 
+   * @param {any} [options={}] 
+   * @returns 
+   * @memberof MQ
+   */
   public publishMsg(body, options = {}) {
     // console.log('publish', this.ready);
     const that = this;
@@ -72,7 +84,14 @@ class MQ {
       }
     }));
   }
-
+  
+  /**
+   * 接收消息
+   * 
+   * @param {any} options 
+   * @param {any} callback 
+   * @memberof MQ
+   */
   public subscribe(options, callback) {
     const that = this;
     if (that.queue) {

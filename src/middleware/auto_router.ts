@@ -25,6 +25,7 @@ readdirSync(join(__dirname, CONTROLLER_PATH))
         const actionPath = join(versionPath, versionName);
 
         if (lstatSync(actionPath).isDirectory()) {
+          // version是文件夹
           readdirSync(actionPath)
             .filter(action => lstatSync(join(actionPath, action)).isFile() && action.indexOf('.map') < 0)
             .forEach(action => {
@@ -38,6 +39,7 @@ readdirSync(join(__dirname, CONTROLLER_PATH))
             });
 
         } else {
+          // version是文件如v1.js
           const _versionName = versionName.toLowerCase().replace('.js', '');
           apiController[_ctrlName][_versionName] = {};
 

@@ -4,6 +4,7 @@
 import config from '../config';
 import rabbitmq from './rabbitmq_core';
 
+// 初始化mq
 export const submitMQ = rabbitmq.init({
   connOptions: config.rabbitmq.connOptions,
   implOptions: config.rabbitmq.implOptions,

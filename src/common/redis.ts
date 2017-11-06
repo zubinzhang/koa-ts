@@ -7,8 +7,15 @@ import * as Redis from 'ioredis';
 import appLog from './logger';
 import config from '../config';
 
+/**
+ * redis操作类
+ */
 class RedisHelper extends Redis {
   static db: RedisHelper;
+
+  /**
+   * 初始化redis
+   */
   static init() {
 
     if (!RedisHelper.db) {
@@ -83,6 +90,13 @@ class RedisHelper extends Redis {
     super(options);
   }
 
+  /**
+   * 获取json数据
+   * 
+   * @param {any} key 
+   * @returns 
+   * @memberof RedisHelper
+   */
   async getJsonData(key) {
     let data = null;
     try {
