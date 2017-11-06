@@ -41,10 +41,27 @@ declare module "koa" {
      */
     allowJson(): Context;
 
+    /**
+     * 参数校验
+     */
     validateBody(key: string): IValidator;
 
+    /**
+     * 参数校验
+     */
     validateQuery(key: string): IValidator;
 
+    /**
+     * 校验完毕的请求参数
+     */
     vals: object;
+
+    /**
+     * 验证
+     */
+    auth: {
+      userId: number;
+      pass: string;
+    }
   }
 }

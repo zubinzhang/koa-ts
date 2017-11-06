@@ -48,8 +48,6 @@ export function extendContext(): Middleware {
       return ctx;
     };
 
-
-
     ctx.allowJson = (() => {
       if (!ctx.is('json')) {
         ctx.error('content-type错误,必须是application/json');
@@ -57,7 +55,39 @@ export function extendContext(): Middleware {
       return ctx;
     });
 
+    // auth
+    auth(ctx);
+
     await next();
 
   };
+}
+
+/**
+ * auth
+ * 
+ * @param {Context} ctx 
+ */
+function auth(ctx: Context) {
+  const env = process.env.NODE_ENV || 'development';
+  const defaultAuth = 'Basic MTU1MDE0OjE=';
+
+  const authStr = ctx.header.authorization || (env === 'development' ? defaultAuth : '');
+
+  /* 用户ID必须是5到12位数的数字*/
+  const userPassRegExp = /^([\d]{5,12}?):(.*)$/;
+  const credentialsRegExp = /^ *(?:[Bb][Aa][Ss][Ii][Cc]) +([A-Za-z0-9\-\._~\+\/]+=*) *$/;
+  const match = credentialsRegExp.exec(authStr);
+
+  if (!match) {
+    ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
+  }
+  const userPass = userPassRegExp.exec(new Buffer(match[1], 'base64').toString());
+
+  if (!userPass) {
+    ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
+  }
+
+  ctx.auth.userId = parseInt(userPass[1], 10);
+  ctx.auth.pass = userPass[2];
 }
