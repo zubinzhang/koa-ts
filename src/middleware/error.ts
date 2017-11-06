@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { Context, Middleware } from 'koa';
 import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
-import { ValidationError } from 'koa-bouncer';
+import { ValidationError } from '../common/validator';
 import appLog from '../common/logger';
 import { formatResData } from '../common/util';
 import { mongoModel } from '../model';

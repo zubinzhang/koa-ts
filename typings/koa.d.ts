@@ -40,5 +40,11 @@ declare module "koa" {
      * @memberof BaseContext
      */
     allowJson(): Context;
+
+    validateBody(key: string): IValidator;
+
+    validateQuery(key: string): IValidator;
+
+    vals: object;
   }
 }

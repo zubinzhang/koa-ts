@@ -7,7 +7,7 @@ import 'source-map-support/register';
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as koaBodyparser from 'koa-bodyparser';
-import * as koaBouncer from 'koa-bouncer';
+import * as koaBouncer from './middleware/koa-validate';
 import * as koaCompress from 'koa-compress';
 import * as koaFavicon from 'koa-favicon';
 import * as koaLogger from 'koa-logger';
@@ -23,8 +23,8 @@ app.use(koaLogger());
 app.use(koaFavicon('../favicon.ico'));
 app.use(koaCompress());
 app.use(koaBodyparser());
-app.use(koaBouncer.middleware());
 app.use(handleError());
+app.use(koaBouncer.middleware());
 app.use(extendContext());
 
 

@@ -25,7 +25,6 @@
     "ioredis": "^3.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
-    "koa-bouncer": "^6.0.4",
     "koa-compress": "^2.0.0",
     "koa-favicon": "^2.0.0",
     "koa-logger": "^3.1.0",
@@ -38,7 +37,8 @@
     "node-schedule": "^1.2.5",
     "sequelize": "^4.22.0",
     "source-map-support": "^0.5.0",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "validator": "^9.1.1"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
@@ -51,6 +51,7 @@
     "@types/node": "^8.0.33",
     "@types/node-schedule": "^1.2.0",
     "@types/sequelize": "^4.0.76",
+    "@types/validator": "^6.3.0",
     "nodemon": "^1.11.0",
     "rimraf": "^2.6.1",
     "sequelize-auto": "^0.4.29",

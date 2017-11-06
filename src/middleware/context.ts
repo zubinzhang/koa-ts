@@ -7,6 +7,18 @@ import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
 import { formatResData } from '../common/util';
 
+export class CWErrors extends Error implements IError {
+  retCode: number;
+  errCode: number;
+  constructor(message: string, errCode?: number, retCode?: number) {
+    super(message);
+    this.name = 'CWError';
+    this.retCode = retCode;
+    this.errCode = errCode;
+    this.message = message;
+  }
+}
+
 /**
  * 扩展context
  */
@@ -17,12 +29,7 @@ export function extendContext(): Middleware {
     };
 
     ctx.error = (msg: string, errCode: number = retCodeEnum.serverError, retCode: number = errCodeEnum.apiError) => {
-      throw Object.assign(
-        new Error(msg || '接口口内部异常'),
-        {
-          retCode,
-          errCode,
-        });
+      throw new CWErrors('接口口内部异常', errCode, retCode);
     };
 
     ctx.allow = (passMethod: string | Array<string> = 'GET') => {
