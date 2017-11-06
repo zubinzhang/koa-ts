@@ -70,7 +70,7 @@ class MQ {
     // console.log('publish', this.ready);
     const that = this;
     return new Promise(((resolve, reject) => {
-      if (!this.ready || !this.exchangeSubmit || this.exchangeSubmit.binds == 0) {
+      if (!this.ready || !this.exchangeSubmit || this.exchangeSubmit.binds === 0) {
         setTimeout(() => {
           resolve(that.publishMsg(body, options));
         }, 1000);

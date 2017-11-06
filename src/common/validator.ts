@@ -29,7 +29,7 @@ export default class Validator implements IValidator {
   vals: object; // ctx.vals
   name: string;
 
-  constructor(vals: object, key: string, name?: string = '') {
+  constructor(vals: object, key: string, name: string = '') {
     this.val = vals[key];
     this.key = key;
     this.vals = vals;
