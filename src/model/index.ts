@@ -1,6 +1,8 @@
 /*
  * Created by Zubin on 2017-11-02 17:10:05
  */
+
+import * as Bluebird from 'bluebird';
 import * as Sequelize from 'sequelize';
 import * as mondoModels from './mongo/db';
 import * as mongoose from 'mongoose';
@@ -13,6 +15,8 @@ import config from '../config';
 config.db.epaperWork.dbConfig.logging = sql => {
   appLog.log(sql);
 };
+
+
 const workSquelize = new Sequelize(
   config.db.epaperWork.database,
   config.db.epaperWork.userName,
@@ -26,6 +30,8 @@ const workModel = workModels.getModels(workSquelize);
 
 export { Sequelize, workSquelize, workModel };
 
+// Use bluebird promises
+(<any>mongoose).Promise = Bluebird;
 // 新建mongodb连接
 mongoose.connect(config.mongo.epaperLog, {
   // autoReconnect: true,

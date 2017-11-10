@@ -1,7 +1,7 @@
 /*
  * Created by Zubin on 2017-10-31 14:18:45
  */
-import {Config, DBConfig, RabbitMqConfig} from '../../typings/config';
+import { Config, DBConfig, RabbitMqConfig } from '../../typings/config';
 
 /**
  * 开发数据库配置
@@ -19,6 +19,7 @@ const epaperWork: DBConfig = {
       max: 2000,
       min: 3,
     },
+    operatorsAliases: false,
     dialectOptions: {
       charset: 'utf8mb4',
       collate: 'utf8mb4_unicode_ci',

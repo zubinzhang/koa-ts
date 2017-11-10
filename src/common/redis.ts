@@ -61,25 +61,6 @@ class RedisHelper extends Redis {
         console.info('redis连接已经释放');
       });
 
-      //     /**
-      //  * 从缓存获取数据
-      //  *
-      //  * @param {any} key
-      //  * @returns
-      //  */
-      //     server.getJsonData = async (key) => {
-      //       let data = null;
-      //       try {
-      //         data = await server.get(key);
-      //         data = JSON.parse(data);
-      //       } catch (error) {
-      //         console.error(`获取缓存错误：${error}`);
-      //         // 非必要信息，获取异常忽略就好
-      //         data = null;
-      //       }
-      //       return data;
-      //     };
-
       RedisHelper.db = server;
     }
     return RedisHelper.db;
@@ -103,7 +84,7 @@ class RedisHelper extends Redis {
       data = await this.get(key);
       data = JSON.parse(data);
     } catch (error) {
-      console.error(`获取缓存错误：${error}`);
+      appLog.error(`获取缓存错误：${error}`);
       // 非必要信息，获取异常忽略就好
       data = null;
     }

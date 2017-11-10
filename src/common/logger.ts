@@ -29,7 +29,7 @@ appLog.log = function (...items) {
  * @returns
  */
 function createLogger() {
-  const pm2WorkId = process.env.pm_id === undefined
+  const pm2WorkId: string = process.env.pm_id === undefined
     ? ''
     : `${process.env.pm_id}-`;
 

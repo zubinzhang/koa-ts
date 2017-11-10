@@ -18,8 +18,11 @@
         "one-line": [
             true,
             "check-open-brace",
+            "check-catch",
+            "check-else",
             "check-whitespace"
         ],
+        "prefer-template": [true, "allow-single-concat"],
         "quotemark": [
             true,
             "single"

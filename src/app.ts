@@ -42,7 +42,7 @@ app.use(router.routes())
 
 // 捕捉全局错误
 app.on('error', (err, ctx) => {
-  console.log('app-on-error事件:' + err.toString() + 'ctx.request:' + JSON.stringify(ctx.request));
+  console.log(`app-on-error事件:${err.toString()} ctx.request: ${JSON.stringify(ctx.request)}`);
 });
 
 //监听所有未处理的Promise.reject异常

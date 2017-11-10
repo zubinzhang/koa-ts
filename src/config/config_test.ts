@@ -19,6 +19,7 @@ const epaperWork: DBConfig = {
       max: 2000,
       min: 3,
     },
+    operatorsAliases: false,
     dialectOptions: {
       charset: 'utf8mb4',
       collate: 'utf8mb4_unicode_ci',
