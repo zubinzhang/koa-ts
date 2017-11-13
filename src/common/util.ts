@@ -29,3 +29,19 @@ export function formatResData<T>(data: T, ret: number = retCodeEnum.success, err
     uuid: uuidV4(),
   };
 }
+
+/**
+ * 字符串转换成浮点数
+ * 
+ * @export
+ * @param {string} data 待转换的数字
+ * @param {number} [digit=2] 小数位数
+ * @returns {number} 
+ */
+export function convertFloat(data: string, digit: number = 2): number {
+  try {
+    return parseFloat(parseFloat(data).toFixed(digit));
+  } catch (error) {
+    return 0;
+  }
+}
