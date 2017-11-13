@@ -1,17 +1,17 @@
 # koa-ts
-koa demo
+koa2 demo，使用typescript
 
 ## 启动
 ```sh
 npm install #安装依赖
-npm run build # babel编译
+npm run build # tsc编译
 npm start # 启动项目
 ```
 
 ## 其他命令
 ```sh
-npm run build # babel编译
-npm run dev # babel即时编译并运行，用于本地开发
+npm run build # tsc编译
+npm run dev # tsc即时编译并运行，用于本地开发
 npm run model # 生成model,默认目录在src/model/[dbname]下
 ```
 
