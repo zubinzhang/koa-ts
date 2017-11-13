@@ -4,7 +4,7 @@
 
 import * as Redis from 'ioredis';
 
-import appLog from './logger';
+import { appLog } from './logger';
 import config from '../config';
 
 /**
@@ -22,14 +22,14 @@ class RedisHelper extends Redis {
       let server;
       config.redis.retryStrategy = (times) => {
         if (times <= 5) {
-          appLog.fatal(`重连次数${times}`);
+          appLog.info(`重连次数${times}`);
           return times;
         }
         if (!server) return 0;
         server.disconnect();
-        appLog.fatal('redis将在10分钟之后重新尝试建立连接');
+        appLog.info('redis将在10分钟之后重新尝试建立连接');
         setTimeout(() => {
-          appLog.fatal('redis正在尝试重新建立连接');
+          appLog.info('redis正在尝试重新建立连接');
           server = new RedisHelper(config.redis);
         }, 1000 * 60 * 10);
 

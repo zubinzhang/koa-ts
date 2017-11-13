@@ -4,11 +4,11 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
-    "start": "nodemon build/app.js | bunyan",
+    "start": "nodemon build/app.js",
     "dev": "npm run watch & npm run start",
     "build": "npm run clear & tsc",
     "watch": "npm run clear & tsc -w",
-    "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts | bunyan",
+    "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts",
     "lint": "tslint \"src/**/*.ts\" ",
     "clear": "rimraf build",
     "model": "rimraf src/model/epaperwork & sequelize-auto -o \"./src/model/epaperwork\" -c \"create_model.json\" -d cw_epaper_work -h 192.168.2.117 -u ciwong_sabin -p 3306 -x ciwong2017 -e mysql -C -z"

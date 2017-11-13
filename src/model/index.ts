@@ -8,7 +8,7 @@ import * as mondoModels from './mongo/db';
 import * as mongoose from 'mongoose';
 import * as workModels from './epaperwork/db.tables';
 
-import appLog from '../common/logger';
+import { appLog } from '../common/logger';
 import config from '../config';
 
 // 新建mysql数据库实例

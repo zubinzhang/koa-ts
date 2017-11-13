@@ -36,7 +36,7 @@ export function extendContext(): Middleware {
      * 抛出异常
      */
     ctx.error = (msg: string, errCode: number = retCodeEnum.serverError, retCode: number = errCodeEnum.apiError) => {
-      throw new CWErrors('接口口内部异常', errCode, retCode);
+      throw new CWErrors(msg, errCode, retCode);
     };
 
     /**
