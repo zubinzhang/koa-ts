@@ -6,16 +6,15 @@ import * as Bluebird from 'bluebird';
 import * as Sequelize from 'sequelize';
 import * as mondoModels from './mongo/db';
 import * as mongoose from 'mongoose';
-import * as workModels from './epaperwork/db.tables';
+import * as workModels from './epaperwork/db.tables'; //引入sequelize-auto生成的实体
 
 import { appLog } from '../common/logger';
 import config from '../config';
 
 // 新建mysql数据库实例
 config.db.epaperWork.dbConfig.logging = sql => {
-  appLog.info(sql);
+  appLog.info(sql); // sql语句写入日志
 };
-
 
 const workSquelize = new Sequelize(
   config.db.epaperWork.database,

@@ -11,7 +11,7 @@ const epaperWork: DBConfig = {
   password: '',
   database: '',
   dbConfig: {
-    host: '192.168.1.49',
+    host: '',
     port: 3306,
     dialect: 'mysql',
     timezone: '+08:00',
@@ -54,9 +54,9 @@ export default {
     epaperWork,
   },
   redis: {
-    host: '192.168.2.163',
+    host: '',
     port: 6379,
-    password: 'ciwongrds',
+    password: '',
     db: 5,
     connectTimeout: 1000,
     lazyConnect: false,
