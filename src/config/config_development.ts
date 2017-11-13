@@ -66,4 +66,6 @@ export default {
     epaperLog: 'mongodb://×××××?poolSize=50',
   },
   rabbitmq,
+  submitQueueName: 'queue.epaper.submit.development',
+  submitExchangeName: 'queue.epaper.submit.development',
 } as Config;
