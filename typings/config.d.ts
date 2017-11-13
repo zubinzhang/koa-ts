@@ -54,6 +54,4 @@ export interface Config {
   };
   redis?: RedisOptions;
   rabbitmq: RabbitMqConfig;
-  submitQueueName: string;
-  submitExchangeName: string;
 }

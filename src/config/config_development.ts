@@ -7,9 +7,9 @@ import { Config, DBConfig, RabbitMqConfig } from '../../typings/config';
  * 开发数据库配置
  */
 const epaperWork: DBConfig = {
-  userName: 'root',
-  password: 'root',
-  database: 'cw_epaper_work',
+  userName: '',
+  password: '',
+  database: '',
   dbConfig: {
     host: '192.168.1.49',
     port: 3306,
@@ -35,10 +35,10 @@ const epaperWork: DBConfig = {
  */
 const rabbitmq: RabbitMqConfig = {
   connOptions: {
-    host: '192.168.2.163',
+    host: '',
     port: 5672,
-    login: 'ciwong2017',
-    password: '123456',
+    login: '',
+    password: '',
     vhost: 'ciwong_vhost',
   },
   implOptions: {
@@ -63,9 +63,7 @@ export default {
     keyPrefix: '',
   },
   mongo: {
-    epaperLog: 'mongodb://192.168.2.163:27017/epaperLog?poolSize=50',
+    epaperLog: 'mongodb://×××××?poolSize=50',
   },
   rabbitmq,
-  submitQueueName: 'queue.epaper.submit.development',
-  submitExchangeName: 'queue.epaper.submit.development',
 } as Config;

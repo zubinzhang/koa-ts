@@ -11,7 +11,7 @@
     "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts",
     "lint": "tslint \"src/**/*.ts\" ",
     "clear": "rimraf build",
-    "model": "rimraf src/model/epaperwork & sequelize-auto -o \"./src/model/epaperwork\" -c \"create_model.json\" -d cw_epaper_work -h 192.168.2.117 -u ciwong_sabin -p 3306 -x ciwong2017 -e mysql -C -z"
+    "model": "rimraf src/model/[库名] & sequelize-auto -o \"./src/model/[库名]\" -c \"create_model.json\" -d [库名] -h [数据库主机] -u [用户名] -p [端口] -x [密码] -e mysql -C -z"
   },
   "keywords": [],
   "author": "",
