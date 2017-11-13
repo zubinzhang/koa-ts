@@ -7,6 +7,8 @@ declare module "koa" {
   }
   // 扩展context
   interface BaseContext {
+    log: Ilog;
+
     /**
      * 抛出错误信息
      * 
@@ -64,4 +66,6 @@ declare module "koa" {
       pass: string;
     }
   }
+
+  
 }

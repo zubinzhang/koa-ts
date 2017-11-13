@@ -104,6 +104,8 @@ function auth(ctx: Context) {
     ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
   }
 
-  ctx.auth.userId = parseInt(userPass[1], 10);
-  ctx.auth.pass = userPass[2];
+  ctx.auth = {
+    userId: parseInt(userPass[1], 10),
+    pass: userPass[2],
+  };
 }

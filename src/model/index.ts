@@ -13,7 +13,7 @@ import config from '../config';
 
 // 新建mysql数据库实例
 config.db.epaperWork.dbConfig.logging = sql => {
-  appLog.log(sql);
+  appLog.info(sql);
 };
 
 

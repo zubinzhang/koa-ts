@@ -2,85 +2,58 @@
  * Created by Zubin on 2017-11-02 15:16:52
  */
 
-import * as RotatingFileStream from 'bunyan-rotating-file-stream';
-import * as bunyan from 'bunyan';
-import * as fs from 'fs';
+import * as log from 'cw-logger';
 
-import config from '../config';
 import { resolve } from 'path';
 
-const logRoot = resolve(__dirname, '../../logs'); // 日志根目录
-
-// 初始化日志目录
-initLogDir(['app']);
-// 创建日志对象
-const appLog = createLogger();
-
-// 新增log方法
-appLog.log = function (...items) {
-  const args = items.map(item => (typeof item === 'string' ? item : JSON.stringify(item)));
-  appLog.info(args.join(' '));
+const logConfig = {
+  logRoot: resolve(__dirname, './logs'), // 日志根目录(需根据实际情况设置)
+  logLevel: 'info', // file
+  logLevel4console: 'error', // console
+  bunyan: {
+    // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
+    categorys: [{
+      name: 'console',
+      type: 'console',
+      logLevel4console: 'error',
+      pretty: true // 格式化console输出日志, 方便查看
+    }, {
+      name: 'app', // 模块/分类
+      type: 'rotatingFile',
+      pretty: true, // 格式化console输出日志, 方便查看
+      // logLevel: 'info',
+      // logLevel4console: 'error',
+      rotateConfig: {
+        period: '1d', // The period at which to rotate.
+        threshold: '10m', // Rotate log files larger than 10 megabytes
+        totalFiles: 10 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+      }
+    }
+    ]
+  }
 };
 
 /**
- * 创建日志对象
- *
- * @param {any} fileName
- * @returns
+ * 日志类
  */
-function createLogger() {
-  const pm2WorkId: string = process.env.pm_id === undefined
-    ? ''
-    : `${process.env.pm_id}-`;
-
-  const options: ILogOption = {
-    name: config.name,
-    streams: [{
-      level: 'info',
-      type: 'raw',
-      stream: new RotatingFileStream({
-        path: resolve(__dirname, `../../logs/app/${pm2WorkId}app-%Y-%m-%d-out.log`),
-        // path: '/app/ex.%Y-%m-%d %H:%M:%S.log',
-        period: '1d', // rotation
-        totalFiles: 10, // keep 10 back copies
-        rotateExisting: true, // Give ourselves a clean file when we start up, based on period
-        threshold: '100m', // Rotate log files larger than 10 megabytes
-        // totalSize: '20m', // Don't keep more than 20mb of archived log files
-        gzip: false, // Compress the archive log files to save space
-      }),
-    }],
-  };
-
-  if (config.debug) {
-    options.streams.push({
-      level: 'trace',
-      stream: process.stdout,
-    });
+class CWLogger implements Ilog {
+  logger: any;
+  constructor(logger) {
+    this.logger = logger;
+  }
+  info(...logStrs: string[]): void {
+    this.logger.info(`${logStrs.join(' ')}`);
+  }
+  error(err: string | Error): void {
+    this.logger.error(err);
   }
 
-  return bunyan.createLogger(options);
 }
 
+const logObj = log(logConfig);
+// 创建日志对象
+const appLog = new CWLogger(logObj.app);
+const consoleLog = new CWLogger(logObj.console);
 
-/**
- * 初始化日志目录
- * @param logDirs 日志子目录
- */
-function initLogDir(logDirs: Array<string>): void {
-  // 日志根目录不存在创建根目录
-  if (!fs.existsSync(logRoot)) {
-    fs.mkdirSync(logRoot);
-  }
-
-  // 创建子目录
-  logDirs.forEach((item) => {
-    const childLogDir = resolve(logRoot, item);
-    if (!fs.existsSync(childLogDir)) {
-      fs.mkdirSync(childLogDir);
-    }
-  });
-}
-
-
-export { appLog };
-export default appLog;
+export { appLog, consoleLog };
+// export default appLog;

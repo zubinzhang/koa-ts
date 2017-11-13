@@ -8,17 +8,17 @@ import { Context, Middleware } from 'koa';
 import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
 import { ValidationError } from '../common/validator';
-import appLog from '../common/logger';
+import { appLog } from '../common/logger';
 import { formatResData } from '../common/util';
 import { mongoModel } from '../model';
 
 export function handleError(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
-    appLog.log('\n========start:开始本次请求跟踪=========');
-    appLog.log(`当前URL:${ctx.url}`);
-    appLog.log(`当前headers:${JSON.stringify(ctx.headers)}`);
-    appLog.log(`当前query:${JSON.stringify(ctx.request.query)}`);
-    appLog.log(`当前body:${JSON.stringify(ctx.request.body)}`);
+    appLog.info('\n========start:开始本次请求跟踪=========');
+    appLog.info(`当前URL:${ctx.url}`);
+    appLog.info(`当前headers:${JSON.stringify(ctx.headers)}`);
+    appLog.info(`当前query:${JSON.stringify(ctx.request.query)}`);
+    appLog.info(`当前body:${JSON.stringify(ctx.request.body)}`);
     try {
       await next();
     } catch (err) {
@@ -54,7 +54,7 @@ export function handleError(): Middleware {
           name: urls[urls.length - 1],
         }).catch(() => true);
       }
-      appLog.log('=======end:结束本次请求跟踪=======\n');
+      appLog.info('=======end:结束本次请求跟踪=======\n');
     }
   };
 }
