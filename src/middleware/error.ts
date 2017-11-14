@@ -10,7 +10,8 @@ import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 import { ValidationError } from '../common/validator';
 import { appLog } from '../common/logger';
 import { formatResData } from '../common/util';
-import { mongoModel } from '../model';
+
+// import { mongoModel } from '../model';
 
 export function handleError(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
@@ -45,14 +46,14 @@ export function handleError(): Middleware {
       if (ctx.req.method.toUpperCase() === 'POST') {
         const urls = ctx.url.split('/');
 
-        mongoModel.logger.create({
-          url: ctx.url,
-          createAt: moment().format('YYYY-MM-DD HH:mm:ss'),
-          header: ctx.headers,
-          reqData: ctx.request.body,
-          resData: ctx.body,
-          name: urls[urls.length - 1],
-        }).catch(() => true);
+        // mongoModel.logger.create({
+        //   url: ctx.url,
+        //   createAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+        //   header: ctx.headers,
+        //   reqData: ctx.request.body,
+        //   resData: ctx.body,
+        //   name: urls[urls.length - 1],
+        // }).catch(() => true);
       }
       appLog.info('=======end:结束本次请求跟踪=======\n');
     }
