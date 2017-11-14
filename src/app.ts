@@ -12,7 +12,7 @@ import * as koaFavicon from 'koa-favicon';
 import * as koaLogger from 'koa-logger';
 import * as koaValidate from './middleware/koa-validate';
 
-import autoRoute from './middleware/auto_router';
+// import autoRoute from './middleware/auto_router';
 import config from './config';
 import { extendContext } from './middleware/context';
 import { handleError } from './middleware/error';
@@ -34,7 +34,7 @@ const router = Router();
 router.all('/', ctx => {
   ctx.body = `${config.name} hello world`;
 });
-router.all('/*', autoRoute());
+// router.all('/*', autoRoute());
 
 app.use(router.routes())
   .use(router.allowedMethods());
