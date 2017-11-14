@@ -32,7 +32,6 @@ app.use(extendContext());
 const router = Router();
 
 router.all('/', ctx => {
-  // ctx.error(1111);
   ctx.body = `welcome to ${config.name}`;
 });
 router.all('/*', autoRoute());
