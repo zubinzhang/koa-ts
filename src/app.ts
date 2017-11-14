@@ -2,7 +2,7 @@
  * Created by Zubin on 2017-10-30 16:43:20
  */
 
-import 'source-map-support/register';
+// import 'source-map-support/register';
 
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
@@ -14,6 +14,8 @@ import config from './config';
 // import * as koaCompress from 'koa-compress';
 // import * as koaFavicon from 'koa-favicon';
 // import * as koaLogger from 'koa-logger';
+
+
 // import * as koaValidate from './middleware/koa-validate';
 
 // import { extendContext } from './middleware/context';
@@ -34,7 +36,7 @@ const app = new Koa();
 const router = Router();
 
 router.all('/', ctx => {
-  ctx.body = `welcome to ${config.name}`;
+  ctx.body = `${config.name} hello world`;
 });
 // router.all('/*', autoRoute());
 
