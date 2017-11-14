@@ -4,7 +4,7 @@
       "name": "koa-ts",
       "script": "build/app.js",
       "exec_mode": "cluster",
-      "instances": "max",
+      "instances": "4",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "error_file": "./logs/pm2/pm2-err.log",
       "out_file": "./logs/pm2/pm2-out.log",
