@@ -21,7 +21,7 @@ const app = new Koa();
 extendContext(app);
 
 // 中间件
-app.use(koaLogger());
+// app.use(koaLogger());
 app.use(koaFavicon('../favicon.ico'));
 // app.use(koaCompress());
 app.use(koaBodyparser());
