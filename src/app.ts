@@ -10,12 +10,14 @@ import * as koaBodyparser from 'koa-bodyparser';
 import * as koaCompress from 'koa-compress';
 import * as koaFavicon from 'koa-favicon';
 import * as koaLogger from 'koa-logger';
-import * as koaValidate from './middleware/koa-validate';
 
 // import autoRoute from './middleware/auto_router';
 import config from './config';
-import { extendContext } from './middleware/context';
-import { handleError } from './middleware/error';
+
+// import * as koaValidate from './middleware/koa-validate';
+
+// import { extendContext } from './middleware/context';
+// import { handleError } from './middleware/error';
 
 const app = new Koa();
 
@@ -24,9 +26,9 @@ app.use(koaLogger());
 app.use(koaFavicon('../favicon.ico'));
 app.use(koaCompress());
 app.use(koaBodyparser());
-app.use(handleError());
-app.use(koaValidate.middleware());
-app.use(extendContext());
+// app.use(handleError());
+// app.use(koaValidate.middleware());
+// app.use(extendContext());
 
 // 路由
 const router = Router();
