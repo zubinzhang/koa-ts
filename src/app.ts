@@ -28,7 +28,7 @@ app.use(koaFavicon('../favicon.ico'));
 app.use(koaBodyparser());
 app.use(handleError());
 // app.use(koaValidate.middleware());
-app.use(extendContext());
+// app.use(extendContext());
 
 // 路由
 const router = Router();
