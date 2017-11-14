@@ -10,19 +10,19 @@ import * as koaBodyparser from 'koa-bodyparser';
 import * as koaCompress from 'koa-compress';
 import * as koaFavicon from 'koa-favicon';
 import * as koaLogger from 'koa-logger';
+import * as koaValidate from './middleware/koa-validate';
 
-// import autoRoute from './middleware/auto_router';
+import autoRoute from './middleware/auto_router';
 import config from './config';
 import { extendContext } from './middleware/context';
 import { handleError } from './middleware/error';
 
-// import * as koaValidate from './middleware/koa-validate';
-
-
 const app = new Koa();
 
+extendContext(app.context);
+
 // 中间件
-// app.use(koaLogger());
+app.use(koaLogger());
 app.use(koaFavicon('../favicon.ico'));
 // app.use(koaCompress());
 app.use(koaBodyparser());
@@ -36,7 +36,7 @@ const router = Router();
 router.all('/', ctx => {
   ctx.body = `${config.name} hello world`;
 });
-// router.all('/*', autoRoute());
+router.all('/*', autoRoute());
 
 app.use(router.routes())
   .use(router.allowedMethods());
@@ -44,6 +44,7 @@ app.use(router.routes())
 
 // 捕捉全局错误
 app.on('error', (err, ctx) => {
+  console.log(err);
   console.log(`app-on-error事件:${err.toString()} ctx.request: ${JSON.stringify(ctx.request)}`);
 });
 
