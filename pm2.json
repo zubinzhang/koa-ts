@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "cw_epaper-schedule",
+      "name": "koa-ts",
       "script": "build/app.js",
       "exec_mode": "cluster",
       "instances": "max",
