@@ -22,10 +22,8 @@ ENV TZ Asia/Shanghai
 # RUN ls /var/app
 
 RUN npm install --production \
-  && npm uninstall -g npm \
   && rm -rf /tmp/* \
   && rm -rf /root/.npm/ \
-  && rm -rf /var/app/src \
-  && apk del make gcc g++ python
+  && rm -rf /var/app/src
 
 ENTRYPOINT pm2 start pm2.json --no-daemon

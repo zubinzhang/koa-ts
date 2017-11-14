@@ -22,9 +22,9 @@ import config from './config';
 const app = new Koa();
 
 // 中间件
-app.use(koaLogger());
+// app.use(koaLogger());
 app.use(koaFavicon('../favicon.ico'));
-app.use(koaCompress());
+// app.use(koaCompress());
 app.use(koaBodyparser());
 // app.use(handleError());
 // app.use(koaValidate.middleware());
