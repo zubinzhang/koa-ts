@@ -71,8 +71,8 @@ export function extendContext(): Middleware {
       return ctx;
     });
 
-    // auth
-    auth(ctx);
+    // // auth
+    // auth(ctx);
 
     await next();
 
