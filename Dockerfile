@@ -20,9 +20,9 @@ ENV NODE_ENV production
 ENV TZ Asia/Shanghai
 
 # RUN ls /var/app
+RUN npm install --production
 
-RUN npm install --production \
-  && rm -rf /tmp/* \
+RUN rm -rf /tmp/* \
   && rm -rf /root/.npm/ \
   && rm -rf /var/app/src
 
