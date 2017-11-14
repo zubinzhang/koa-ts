@@ -26,7 +26,7 @@ const app = new Koa();
 app.use(koaFavicon('../favicon.ico'));
 // app.use(koaCompress());
 app.use(koaBodyparser());
-app.use(handleError());
+// app.use(handleError());
 // app.use(koaValidate.middleware());
 // app.use(extendContext());
 
