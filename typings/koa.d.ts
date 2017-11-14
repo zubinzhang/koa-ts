@@ -33,7 +33,7 @@ declare module "koa" {
      * @param {string} method 
      * @memberof BaseContext
      */
-    allow(method: string | Array<string>): Context;
+    allow(method: string | Array<string>): BaseContext;
 
 
     /**
@@ -41,7 +41,7 @@ declare module "koa" {
      * 
      * @memberof BaseContext
      */
-    allowJson(): Context;
+    allowJson(): BaseContext;
 
     /**
      * 参数校验

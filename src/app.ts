@@ -18,8 +18,7 @@ import { extendContext } from './middleware/context';
 import { handleError } from './middleware/error';
 
 const app = new Koa();
-
-extendContext(app.context);
+extendContext(app);
 
 // 中间件
 app.use(koaLogger());
@@ -34,6 +33,8 @@ app.use(koaBodyparser());
 const router = Router();
 
 router.all('/', ctx => {
+  // console.log(ctx);
+  // ctx.error('1111');
   ctx.body = `${config.name} hello world`;
 });
 router.all('/*', autoRoute());

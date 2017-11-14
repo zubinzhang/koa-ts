@@ -2,7 +2,8 @@
  * Created by Zubin on 2017-11-01 18:21:24
  */
 
-import { BaseContext, Middleware } from 'koa';
+import * as Koa from 'koa';
+
 import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
 import { formatResData } from '../common/util';
@@ -22,8 +23,8 @@ export class CWErrors extends Error implements IError {
 /**
  * 扩展context
  */
-export function extendContext(ctx: BaseContext): void {
-
+export function extendContext(app: Koa): void {
+  const { context: ctx, request } = app;
   /**
    * 执行成功返回信息
    */
@@ -48,13 +49,13 @@ export function extendContext(ctx: BaseContext): void {
     let validateResult = false;
     if (typeof passMethod === 'string') {
       let _passMethod = passMethod.toUpperCase();
-      validateResult = passMethod === 'ALL' || ctx.req.method === passMethod;
+      validateResult = passMethod === 'ALL' || request.method === passMethod;
     } else if (Array.isArray(passMethod)) {
-      validateResult = passMethod.some(item => item.toUpperCase() === ctx.req.method);
+      validateResult = passMethod.some(item => item.toUpperCase() === request.method);
     }
     if (!validateResult) {
-      ctx.error(`接口不支持${ctx.req.method}请求`, errCodeEnum.refusedRequest);
-      // throw Object.assign(new Error(`接口不支持${ctx.req.method}请求`),
+      ctx.error(`接口不支持${request.method}请求`, errCodeEnum.refusedRequest);
+      // throw Object.assign(new Error(`接口不支持${request.method}请求`),
       //   { errcode: errCodeEnum.refusedRequest });
     }
     return ctx;
@@ -74,33 +75,33 @@ export function extendContext(ctx: BaseContext): void {
   // auth(ctx);
 }
 
-/**
- * auth
- * 
- * @param {Context} ctx 
- */
-function auth(ctx: Context) {
-  const env = process.env.NODE_ENV || 'development';
-  const defaultAuth = 'Basic MTU1MDE0OjE=';
+// /**
+//  * auth
+//  * 
+//  * @param {Context} ctx 
+//  */
+// function auth(ctx: Context) {
+//   const env = process.env.NODE_ENV || 'development';
+//   const defaultAuth = 'Basic MTU1MDE0OjE=';
 
-  const authStr = ctx.header.authorization || (env === 'development' ? defaultAuth : '');
+//   const authStr = ctx.header.authorization || (env === 'development' ? defaultAuth : '');
 
-  /* 用户ID必须是5到12位数的数字*/
-  const userPassRegExp = /^([\d]{5,12}?):(.*)$/;
-  const credentialsRegExp = /^ *(?:[Bb][Aa][Ss][Ii][Cc]) +([A-Za-z0-9\-\._~\+\/]+=*) *$/;
-  const match = credentialsRegExp.exec(authStr);
+//   /* 用户ID必须是5到12位数的数字*/
+//   const userPassRegExp = /^([\d]{5,12}?):(.*)$/;
+//   const credentialsRegExp = /^ *(?:[Bb][Aa][Ss][Ii][Cc]) +([A-Za-z0-9\-\._~\+\/]+=*) *$/;
+//   const match = credentialsRegExp.exec(authStr);
 
-  if (!match) {
-    ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
-  }
-  const userPass = userPassRegExp.exec(new Buffer(match[1], 'base64').toString());
+//   if (!match) {
+//     ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
+//   }
+//   const userPass = userPassRegExp.exec(new Buffer(match[1], 'base64').toString());
 
-  if (!userPass) {
-    ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
-  }
+//   if (!userPass) {
+//     ctx.error('未认证的请求', errCodeEnum.refusedRequest, retCodeEnum.authenticationFailure);
+//   }
 
-  ctx.auth = {
-    userId: parseInt(userPass[1], 10),
-    pass: userPass[2],
-  };
-}
+//   ctx.auth = {
+//     userId: parseInt(userPass[1], 10),
+//     pass: userPass[2],
+//   };
+// }
