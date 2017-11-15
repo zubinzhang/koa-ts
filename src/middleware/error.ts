@@ -15,20 +15,20 @@ import { formatResData } from '../common/util';
 
 export function handleError(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
-    // appLog.info('\n========start:开始本次请求跟踪=========');
+    appLog.info('\n========start:开始本次请求跟踪=========');
     // appLog.info(`当前URL:${ctx.url}`);
     // appLog.info(`当前headers:${JSON.stringify(ctx.headers)}`);
     // appLog.info(`当前query:${JSON.stringify(ctx.request.query)}`);
     // appLog.info(`当前body:${JSON.stringify(ctx.request.body)}`);
-    try {
+    // try {
       await next();
-    } catch (err) {
-      formatError(ctx, err);
+    // } catch (err) {
+    //   formatError(ctx, err);
 
       // appLog.error(`出现异常错误:${err.toString()}`);
       // appLog.error(`错误堆栈：${err.stack}`);
       // appLog.error(`响应数据:${JSON.stringify(ctx.body)}`);
-    } finally {
+    // } finally {
       // // 保存post请求的日志
       // if (ctx.req.method.toUpperCase() === 'POST') {
       //   const urls = ctx.url.split('/');
@@ -42,8 +42,8 @@ export function handleError(): Middleware {
       //   //   name: urls[urls.length - 1],
       //   // }).catch(() => true);
       // }
-      // appLog.info('=======end:结束本次请求跟踪=======\n');
-    }
+      appLog.info('=======end:结束本次请求跟踪=======\n');
+    // }
   };
 }
 

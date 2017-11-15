@@ -16,11 +16,11 @@ const logConfig = {
       name: 'console',
       type: 'console',
       logLevel4console: 'error',
-      pretty: true // 格式化console输出日志, 方便查看
+      pretty: false // 格式化console输出日志, 方便查看
     }, {
       name: 'app', // 模块/分类
       type: 'rotatingFile',
-      pretty: true, // 格式化console输出日志, 方便查看
+      pretty: false, // 格式化console输出日志, 方便查看
       // logLevel: 'info',
       // logLevel4console: 'error',
       rotateConfig: {
