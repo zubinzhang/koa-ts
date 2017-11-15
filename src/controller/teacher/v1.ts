@@ -4,8 +4,9 @@
 import { Context } from 'koa';
 
 export async function tests(ctx: Context) {
-  ctx.validateBody('contents').isArray(vali => {
-    vali.check('b').required().isNumber().gt(0);
-  });
-  ctx.success(ctx.vals);
+  return 1;
+  // ctx.validateBody('contents').isArray(vali => {
+  //   vali.check('b').required().isNumber().gt(0);
+  // });
+  // ctx.success(ctx.vals);
 }

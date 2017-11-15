@@ -56,6 +56,8 @@ export const errCodeEnum = {
   // token过期
   accessTokenTimeOutError: 27,
 
+  responseParamTypeError: 33,
+
   eworkError: 51,
 
   submitWorkError: 52,

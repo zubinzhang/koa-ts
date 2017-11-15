@@ -5,19 +5,19 @@
 import 'source-map-support/register';
 
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as http from 'http';
 import * as koaBodyparser from 'koa-bodyparser';
 // import * as koaCompress from 'koa-compress';
 import * as koaFavicon from 'koa-favicon';
 
-// import autoRoute from './middleware/auto_router';
 import config from './config';
 import { extendContext } from './middleware/context';
+import { handleError } from './middleware/error';
+import { initRouter } from './router';
 
 // import * as koaLogger from 'koa-logger';
 // import * as koaValidate from './middleware/koa-validate';
 
-// import { handleError } from './middleware/error';
 
 const app = new Koa();
 extendContext(app);
@@ -27,23 +27,19 @@ extendContext(app);
 app.use(koaFavicon('../favicon.ico'));
 // app.use(koaCompress());
 app.use(koaBodyparser());
-// app.use(handleError());
+app.use(handleError());
 // app.use(koaValidate.middleware());
 // app.use(extendContext());
 
 // 路由
-const router = Router();
-
-router.all('/', ctx => {
-  // console.log(ctx);
-  // ctx.error('1111');
-  ctx.body = `${config.name} hello world`;
-});
-// router.all('/*', autoRoute());
+const router = initRouter();
 
 app.use(router.routes())
   .use(router.allowedMethods());
 
+
+  // create server
+const server = http.createServer(app.callback());
 
 // 捕捉全局错误
 app.on('error', (err, ctx) => {
@@ -57,10 +53,14 @@ process.on('unhandledRejection', function (err) {
 });
 
 process.on('uncaughtException', function (err) {
+  server.close();
   console.error('process-on-uncaughtException,请检查日志,[detail]:' + err.toString());
-
+ 
 });
 
-app.listen(config.port, () => {
-  console.log('Server is run at port ' + config.port);
+server.listen(config.port);
+
+server.on('listening', () => {
+  console.info('Server is listening on port: %d', config.port);
 });
+

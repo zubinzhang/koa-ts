@@ -8,18 +8,6 @@ import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
 import { formatResData } from '../common/util';
 
-export class CWErrors extends Error implements IError {
-  retCode: number;
-  errCode: number;
-  constructor(message: string, errCode?: number, retCode?: number) {
-    super(message);
-    this.name = 'CWError';
-    this.retCode = retCode;
-    this.errCode = errCode;
-    this.message = message;
-  }
-}
-
 /**
  * 扩展context
  */

@@ -8,7 +8,7 @@ import { resolve } from 'path';
 
 const logConfig = {
   logRoot: resolve(__dirname, './logs'), // 日志根目录(需根据实际情况设置)
-  logLevel: 'error', // file
+  logLevel: 'info', // file
   logLevel4console: 'error', // console
   bunyan: {
     // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
