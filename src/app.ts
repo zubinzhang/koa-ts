@@ -7,15 +7,17 @@ import 'source-map-support/register';
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as koaBodyparser from 'koa-bodyparser';
-import * as koaCompress from 'koa-compress';
+// import * as koaCompress from 'koa-compress';
 import * as koaFavicon from 'koa-favicon';
-import * as koaLogger from 'koa-logger';
-import * as koaValidate from './middleware/koa-validate';
 
-import autoRoute from './middleware/auto_router';
+// import autoRoute from './middleware/auto_router';
 import config from './config';
 import { extendContext } from './middleware/context';
-import { handleError } from './middleware/error';
+
+// import * as koaLogger from 'koa-logger';
+// import * as koaValidate from './middleware/koa-validate';
+
+// import { handleError } from './middleware/error';
 
 const app = new Koa();
 extendContext(app);
@@ -25,7 +27,7 @@ extendContext(app);
 app.use(koaFavicon('../favicon.ico'));
 // app.use(koaCompress());
 app.use(koaBodyparser());
-app.use(handleError());
+// app.use(handleError());
 // app.use(koaValidate.middleware());
 // app.use(extendContext());
 
@@ -37,7 +39,7 @@ router.all('/', ctx => {
   // ctx.error('1111');
   ctx.body = `${config.name} hello world`;
 });
-router.all('/*', autoRoute());
+// router.all('/*', autoRoute());
 
 app.use(router.routes())
   .use(router.allowedMethods());
