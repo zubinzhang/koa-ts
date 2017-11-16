@@ -14,7 +14,6 @@ import { handleError } from './middleware/error';
 import { initRouter } from './router';
 
 const app = new Koa();
-const a = 1;
 
 // 中间件
 app.use(koaFavicon('./favicon.ico'));

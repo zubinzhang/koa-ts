@@ -1,67 +1,77 @@
 {
-    //更多配置：https://palantir.github.io/tslint/rules/ 
-    "rules": {
-        "class-name": true,
-        "comment-format": [
-            false,
-            "check-space"
-        ],
-        "indent": [
-            true,
-            "spaces"
-        ],
-        "no-duplicate-variable": true,
-        "no-eval": true,
-        "no-internal-module": true,
-        "no-unused-variable": true,
-        "no-misused-new": true,
-        "no-non-null-assertion": true,
-        "no-shadowed-variable": true,
-        "no-string-literal": false,
-        "no-string-throw": true,
-        "no-switch-case-fall-through": true,
-        "no-trailing-whitespace": true,
-        "no-unnecessary-initializer": true,
-        "no-unused-expression": true,
-        "no-var-keyword": true,
-        "one-line": [
-            true,
-            "check-open-brace",
-            "check-catch",
-            "check-else",
-            "check-whitespace"
-        ],
-        "prefer-template": [true, "allow-single-concat"],
-        "quotemark": [
-            true,
-            "single"
-        ],
-        "semicolon": [true, "always"],
-        "triple-equals": [
-            true,
-            "allow-null-check"
-        ],
-        "typedef-whitespace": [
-            true,
-            {
-                "call-signature": "nospace",
-                "index-signature": "nospace",
-                "parameter": "nospace",
-                "property-declaration": "nospace",
-                "variable-declaration": "nospace"
-            }
-        ],
-        "variable-name": [
-            true,
-            "ban-keywords"
-        ],
-        "whitespace": [
-            true,
-            "check-branch",
-            "check-decl",
-            "check-operator",
-            "check-separator",
-            "check-type"
-        ]
-    }
+  //更多配置：https://palantir.github.io/tslint/rules/ 
+  "rules": {
+    "class-name": true,
+    "comment-format": [
+      false,
+      "check-space"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-internal-module": true,
+    "no-unused-variable": true,
+    "no-misused-new": true,
+    "no-non-null-assertion": true,
+    "no-shadowed-variable": true,
+    "no-string-literal": false,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": true,
+    "no-unnecessary-initializer": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "no-trailing-comma": true,
+    "no-unreachable": true,
+    "no-use-before-declare": true,
+    "no-var-requires": true,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "prefer-template": [
+      true,
+      "allow-single-concat"
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ]
+  }
 }

@@ -38,5 +38,3 @@ export function initRouter(): Router {
 
   return router;
 }
-
-
