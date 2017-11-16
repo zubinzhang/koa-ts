@@ -40,9 +40,9 @@ export interface DBConfig {
 /**
  * 配置文件
  * 
- * @interface Config
+ * @interface IConfig
  */
-export interface Config {
+export interface IConfig {
   debug?: boolean;
   name?: string,
   port: number;

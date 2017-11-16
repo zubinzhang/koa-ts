@@ -2,7 +2,7 @@
  * Created by Zubin on 2017-11-02 12:06:44
  */
 
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 import { Context, Middleware } from 'koa';
 import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
@@ -36,7 +36,7 @@ export function handleError(): Middleware {
     } finally {
       // 保存post请求的日志
       if (ctx.req.method.toUpperCase() === 'POST') {
-        const urls = ctx.url.split('/');
+        // const urls = ctx.url.split('/');
 
         // mongoModel.logger.create({
         //   url: ctx.url,

@@ -1,5 +1,7 @@
 import { BaseContext, Context } from 'koa';
 
+import { IConfig } from './config';
+
 // 扩展koa
 declare module "koa" {
   interface BaseRequest {
@@ -7,7 +9,15 @@ declare module "koa" {
   }
   // 扩展context
   interface BaseContext {
+    /**
+     * 日志
+     */
     log: Ilog;
+
+    /**
+     * 配置
+     */
+    config: IConfig;
 
     /**
      * 抛出错误信息
@@ -18,11 +28,6 @@ declare module "koa" {
      * @memberof BaseContext
      */
     error(msg: string, errCode?: number, retCode?: number): void;
-
-    /**
-     * 校验完毕的请求参数
-     */
-    params: any;
 
     /**
      * 验证

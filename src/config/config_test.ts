@@ -1,7 +1,7 @@
 /*
  * Created by Zubin on 2017-10-31 14:18:45
  */
-import { Config, DBConfig, RabbitMqConfig } from '../../typings/config';
+import { DBConfig, IConfig, RabbitMqConfig } from '../../typings/config';
 
 /**
  * 开发数据库配置
@@ -68,4 +68,4 @@ export default {
   rabbitmq,
   submitQueueName: 'queue.epaper.submit.development',
   submitExchangeName: 'queue.epaper.submit.development',
-} as Config;
+} as IConfig;

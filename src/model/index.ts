@@ -3,11 +3,11 @@
  */
 
 import * as Bluebird from 'bluebird';
-import * as Sequelize from 'sequelize';
+// import * as Sequelize from 'sequelize';
 import * as mondoModels from './mongo/db';
 import * as mongoose from 'mongoose';
 
-import { appLog } from '../common/logger';
+// import { appLog } from '../common/logger';
 import config from '../config';
 
 // import * as workModels from './epaperwork/db.tables'; //引入sequelize-auto生成的实体

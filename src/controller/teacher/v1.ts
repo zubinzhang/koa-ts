@@ -4,7 +4,11 @@
 import { Context } from 'koa';
 
 export async function tests(ctx: Context) {
-  return 1;
+  // return 1;
+
+  ctx.log.info('-------sss----');
+  return ctx.config;
+  // ctx.error('12312125');
   // ctx.validateBody('contents').isArray(vali => {
   //   vali.check('b').required().isNumber().gt(0);
   // });

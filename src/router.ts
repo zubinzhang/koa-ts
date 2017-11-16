@@ -27,9 +27,9 @@ export function initRouter(): Router {
         // password: Joi.string().min(3).error(new Error('长度不能小于3')).max(24).error(new Error('长度不能大于24')).example('1234').description('密码').required().error(new Error('必填'))
       }
     },
-    res: {
-      id: Joi.number().min(3).required()
-    }
+    // res: {
+    //   id: Joi.number().min(3).required()
+    // }
 
   }));
 

@@ -4,16 +4,14 @@
 
 import * as Joi from 'joi';
 
-import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
-
 import { CWErrors } from '../common/cw_error';
 import { Context } from 'koa';
 import { appLog } from '../common/logger';
+import { errCodeEnum } from '../common/api_errcode';
 
 export function handle(options?: any) {
-  return async (ctx: Context, next) => {
+  return async (ctx: Context) => {
     appLog.info('validate...');
-    const reqData = ctx.request.method === 'GET' ? ctx.request.query : ctx.request.body;
 
     // 验证path,找到相应的action
     const action = await vailPath(ctx);
@@ -25,7 +23,7 @@ export function handle(options?: any) {
     for (const key in options.req) {
       if (options.req.hasOwnProperty(key)) {
         const schema = options.req[key];
-        const { error, value } = Joi.validate(ctx.request[key], schema);
+        const { error } = Joi.validate(ctx.request[key], schema);
         // ctx.cwLogger.info('value', value);
         if (error) {
           throw new CWErrors(error.message, errCodeEnum.paramTypeError);
@@ -33,11 +31,11 @@ export function handle(options?: any) {
       }
     }
 
-    const result = await action();
+    const result = await action(ctx);
 
     // 验证返回数据respose.body{...}
     if (result instanceof Object && options.res) {
-      const { error, value } = Joi.validate(result, options.res);
+      const { error } = Joi.validate(result, options.res);
       if (error) {
         throw new CWErrors(error.message, errCodeEnum.responseParamTypeError);
       }
@@ -49,9 +47,9 @@ export function handle(options?: any) {
 
 /**
  * 验证路劲,找到相应的action
- * 
- * @param {*} ctx 
- * @returns 
+ *
+ * @param {*} ctx
+ * @returns
  */
 async function vailPath(ctx: any) {
   const scheme = ctx.path.toLowerCase().split('/').filter(item => item.trim().length > 0);

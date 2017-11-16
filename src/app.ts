@@ -10,10 +10,14 @@ import * as koaBodyparser from 'koa-bodyparser';
 import * as koaFavicon from 'koa-favicon';
 
 import config from './config';
+import { extend } from './middleware/extend';
 import { handleError } from './middleware/error';
 import { initRouter } from './router';
 
 const app = new Koa();
+
+// 扩展koa
+extend(app);
 
 // 中间件
 app.use(koaFavicon('./favicon.ico'));
