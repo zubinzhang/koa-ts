@@ -16,7 +16,7 @@ import { initRouter } from './router';
 const app = new Koa();
 
 // 中间件
-app.use(koaFavicon('../favicon.ico'));
+app.use(koaFavicon('./favicon.ico'));
 app.use(koaBodyparser());
 app.use(handleError());
 

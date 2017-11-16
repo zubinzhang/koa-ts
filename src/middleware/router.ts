@@ -21,7 +21,6 @@ export function handle(options?: any) {
     if (options.auth) {
       // 验证用户
     }
-ss
     // 验证请求参数request{ headers, query, body }
     for (const key in options.req) {
       if (options.req.hasOwnProperty(key)) {
