@@ -33,15 +33,17 @@ export function handle(options?: any) {
       }
     }
 
-    ctx.body = await action();
+    const result = await action();
 
     // 验证返回数据respose.body{...}
-    if (ctx.body instanceof Object && options.res) {
-      const { error, value } = Joi.validate(ctx.body, options.res);
+    if (result instanceof Object && options.res) {
+      const { error, value } = Joi.validate(result, options.res);
       if (error) {
         throw new CWErrors(error.message, errCodeEnum.responseParamTypeError);
       }
     }
+
+    ctx.body = result;
   };
 }
 
