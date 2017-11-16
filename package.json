@@ -53,7 +53,6 @@
     "@types/sequelize": "^4.0.76",
     "@types/validator": "^6.3.0",
     "del": "^3.0.0",
-<<<<<<< HEAD
     "eslint": "^4.2.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.6.0",
@@ -61,9 +60,6 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-typescript": "^3.2.3",
-=======
-    "nodemon": "^1.12.1",
->>>>>>> 9a360d55690e268263d5433b1cee95c471286072
     "rimraf": "^2.6.1",
     "sequelize-auto": "^0.4.29",
     "ts-node": "^3.3.0",
