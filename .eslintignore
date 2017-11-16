@@ -1,0 +1,9 @@
+# ignore build file
+build/
+dist/
+
+# ignore node_modules
+node_modules
+
+# ignore test file
+test
