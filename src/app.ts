@@ -31,7 +31,6 @@ const server = http.createServer(app.callback());
 
 // 捕捉全局错误
 app.on('error', (err, ctx) => {
-  console.log(err);
   console.log(`app-on-error事件:${err.toString()} ctx.request: ${JSON.stringify(ctx.request)}`);
 });
 
@@ -41,7 +40,6 @@ process.on('unhandledRejection', function (err) {
 });
 
 process.on('uncaughtException', function (err) {
-  server.close();
   console.error('process-on-uncaughtException,请检查日志,[detail]:' + err.toString());
 
 });
