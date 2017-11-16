@@ -7,7 +7,6 @@ import * as moment from 'moment';
 import { Context, Middleware } from 'koa';
 import { errCodeEnum, retCodeEnum } from '../common/api_errcode';
 
-import { ValidationError } from '../common/validator';
 import { appLog } from '../common/logger';
 import { formatResData } from '../common/util';
 
@@ -26,7 +25,12 @@ export function handleError(): Middleware {
     try {
       await next();
     } catch (err) {
-      formatError(ctx, err);
+      ctx.body = formatResData(
+        null,
+        err.retCode || retCodeEnum.serverError,
+        err.errCode || errCodeEnum.autoSnapError,
+        err.message || err.toString(),
+      );
 
       appLog.error(`出现异常错误:${err.toString()}\n错误堆栈：${err.stack}\n响应数据:${JSON.stringify(ctx.body)}`);
     } finally {
@@ -43,28 +47,7 @@ export function handleError(): Middleware {
         //   name: urls[urls.length - 1],
         // }).catch(() => true);
       }
-      appLog.info('=======end:结束本次请求跟踪=======\n');
     }
   };
 }
 
-/**
- * 
- * @param ctx 格式化错误
- * @param err 
- */
-function formatError(ctx: Context, err: any) {
-  // 参数校验错误
-  if (err instanceof ValidationError) {
-    err.retCode = retCodeEnum.serverError;
-    err.errCode = errCodeEnum.paramTypeError;
-  }
-
-  ctx.body = formatResData(
-    null,
-    err.retCode || retCodeEnum.serverError,
-    err.errCode || errCodeEnum.autoSnapError,
-    err.message || err.toString(),
-  );
-
-}

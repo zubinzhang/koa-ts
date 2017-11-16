@@ -5,7 +5,6 @@
 import * as Joi from 'joi';
 import * as Router from 'koa-router';
 
-import { Error } from 'mongoose';
 import config from './config';
 import { handle } from './middleware/router';
 

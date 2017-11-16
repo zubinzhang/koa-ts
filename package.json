@@ -9,7 +9,7 @@
     "build": "npm run clear & tsc",
     "watch": "npm run clear & tsc -w",
     "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts",
-    "lint": "tslint \"src/**/*.ts\" ",
+    "lint": "tslint --type-check --project tsconfig.json \"src/**/*.ts\" --force",
     "clear": "rimraf build",
     "model": "rimraf src/model/[库名] & sequelize-auto -o \"./src/model/[库名]\" -c \"create_model.json\" -d [库名] -h [数据库主机] -u [用户名] -p [端口] -x [密码] -e mysql -C -z"
   },
@@ -22,6 +22,7 @@
     "chai": "^4.1.2",
     "cw-logger": "^1.1.3",
     "ioredis": "^3.2.1",
+    "joi": "^13.0.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
@@ -59,6 +60,7 @@
     "sequelize-auto": "^0.4.29",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
+    "tslint-config-airbnb": "^5.4.2",
     "typescript": "^2.5.3"
   }
 }
