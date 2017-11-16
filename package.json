@@ -5,7 +5,7 @@
   "main": "build/app.js",
   "scripts": {
     "start": "node build/app.js",
-    "debug": "nodemon --watch ./build --inspect=0.0.0.0:5858 --nolazy ./build/app.js",  
+    "debug": "nodemon  ./build/app.js",
     "dev": "tsc -w & nodemon build/app.js",
     "build": "npm run clear & tsc",
     "watch": "tsc -w",

@@ -13,7 +13,7 @@ export function initRouter(): Router {
 
   // 主页
   router.all('/', ctx => {
-    ctx.body = `${config.name} hello world1`;
+    ctx.body = `${config.name} hello world1112`;
   });
 
   router.get('/teacher/tests', handle({
