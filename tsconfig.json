@@ -7,8 +7,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "inlineSources": true,
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "noEmit": false,
     "noEmitHelpers": true,
     "importHelpers": true,
@@ -37,6 +36,6 @@
     "**/*.test.ts",
     "temp"
   ],
-  "compileOnSave": false,
+  "compileOnSave": true,
   "buildOnSave": true
 }

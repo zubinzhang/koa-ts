@@ -5,53 +5,36 @@
 import 'source-map-support/register';
 
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as http from 'http';
 import * as koaBodyparser from 'koa-bodyparser';
-// import * as koaCompress from 'koa-compress';
 import * as koaFavicon from 'koa-favicon';
 
-// import autoRoute from './middleware/auto_router';
 import config from './config';
-import { extendContext } from './middleware/context';
-
-// import * as koaLogger from 'koa-logger';
-// import * as koaValidate from './middleware/koa-validate';
-
-// import { handleError } from './middleware/error';
+import { handleError } from './middleware/error';
+import { initRouter } from './router';
 
 const app = new Koa();
-extendContext(app);
 
 // 中间件
-// app.use(koaLogger());
-app.use(koaFavicon('../favicon.ico'));
-// app.use(koaCompress());
+app.use(koaFavicon('./favicon.ico'));
 app.use(koaBodyparser());
-// app.use(handleError());
-// app.use(koaValidate.middleware());
-// app.use(extendContext());
+app.use(handleError());
 
 // 路由
-const router = Router();
-
-router.all('/', ctx => {
-  // console.log(ctx);
-  // ctx.error('1111');
-  ctx.body = `${config.name} hello world`;
-});
-// router.all('/*', autoRoute());
+const router = initRouter();
 
 app.use(router.routes())
   .use(router.allowedMethods());
 
+// create server
+const server = http.createServer(app.callback());
 
 // 捕捉全局错误
 app.on('error', (err, ctx) => {
-  console.log(err);
   console.log(`app-on-error事件:${err.toString()} ctx.request: ${JSON.stringify(ctx.request)}`);
 });
 
-//监听所有未处理的Promise.reject异常
+// 监听所有未处理的Promise.reject异常
 process.on('unhandledRejection', function (err) {
   console.error('process-on-unhandledRejection事件:' + err.toString());
 });
@@ -61,6 +44,8 @@ process.on('uncaughtException', function (err) {
 
 });
 
-app.listen(config.port, () => {
-  console.log('Server is run at port ' + config.port);
+server.listen(config.port);
+
+server.on('listening', () => {
+  console.info('Server is listening on port: %d', config.port);
 });

@@ -20,43 +20,9 @@ declare module "koa" {
     error(msg: string, errCode?: number, retCode?: number): void;
 
     /**
-     * 返回成功的实体
-     * 
-     * @param {*} data 
-     * @memberof BaseContext
-     */
-    success<T>(data: T): void;
-
-    /**
-     * 判断http method
-     * 
-     * @param {string} method 
-     * @memberof BaseContext
-     */
-    allow(method: string | Array<string>): BaseContext;
-
-
-    /**
-     * 判断content-type 是否application/json
-     * 
-     * @memberof BaseContext
-     */
-    allowJson(): BaseContext;
-
-    /**
-     * 参数校验
-     */
-    validateBody(key: string): IValidator;
-
-    /**
-     * 参数校验
-     */
-    validateQuery(key: string): IValidator;
-
-    /**
      * 校验完毕的请求参数
      */
-    vals: object;
+    params: any;
 
     /**
      * 验证
@@ -66,6 +32,4 @@ declare module "koa" {
       pass: string;
     }
   }
-
-  
 }

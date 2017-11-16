@@ -8,16 +8,11 @@ import { resolve } from 'path';
 
 const logConfig = {
   logRoot: resolve(__dirname, './logs'), // 日志根目录(需根据实际情况设置)
-  logLevel: 'error', // file
+  logLevel: 'info', // file
   logLevel4console: 'error', // console
   bunyan: {
     // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
     categorys: [{
-      name: 'console',
-      type: 'console',
-      logLevel4console: 'error',
-      pretty: false // 格式化console输出日志, 方便查看
-    }, {
       name: 'app', // 模块/分类
       type: 'rotatingFile',
       pretty: false, // 格式化console输出日志, 方便查看
@@ -52,8 +47,6 @@ class CWLogger implements Ilog {
 
 const logObj = log(logConfig);
 // 创建日志对象
-const appLog = new CWLogger(logObj.app);
-const consoleLog = new CWLogger(logObj.console);
+export const appLog = new CWLogger(logObj.app);
 
-export { appLog, consoleLog };
 // export default appLog;
