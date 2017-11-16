@@ -3,9 +3,11 @@
  */
 import { IConfig } from '../../typings/config';
 
+// tslint:disable-next-line:no-var-requires
 const packageJson = require('../../package.json');
 const env = process.env.NODE_ENV || 'development';
 
+// tslint:disable-next-line:no-var-requires
 const configEnv = require(`./config_${env}`); // 根据环境变量动态加载配置文件
 
 const config: IConfig = configEnv.default || configEnv;
