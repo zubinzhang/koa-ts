@@ -24,10 +24,13 @@ export function handle(options?: any) {
     for (const key in options.req) {
       if (options.req.hasOwnProperty(key)) {
         const schema = options.req[key];
-        const { error } = Joi.validate(ctx.request[key], schema);
+        const { error, value } = Joi.validate(ctx.request[key], schema);
         // ctx.cwLogger.info('value', value);
         if (error) {
           throw new CWErrors(error.message, errCodeEnum.paramTypeError);
+        }
+        if (key === 'query' || key === 'body') {
+          ctx.params = { ...ctx.params, ...value };
         }
       }
     }

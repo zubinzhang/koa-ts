@@ -20,6 +20,11 @@ declare module "koa" {
     config: IConfig;
 
     /**
+     * 请求参数
+     */
+    params: any;
+
+    /**
      * 抛出错误信息
      * 
      * @param {string} msg 错误信息

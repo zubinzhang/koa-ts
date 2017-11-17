@@ -6,7 +6,7 @@ import { Context } from 'koa';
 export async function tests(ctx: Context) {
   // return 1;
 
-  ctx.log.info('-------sss----');
+  console.log(ctx.params);
   return ctx.config;
   // ctx.error('12312125');
   // ctx.validateBody('contents').isArray(vali => {

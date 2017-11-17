@@ -22,8 +22,8 @@ export function initRouter(): Router {
       headers: Joi.object().unknown(),
       body: Joi.object().unknown(),
       query: {
-        account: Joi.string().example('12345678901').description('邮箱/手机号码').required().error(new Error('账号不能为空')),
-        password: Joi.string().min(3).max(24).example('1234').description('密码').required(),
+        account: Joi.number().example('12345678901').description('邮箱/手机号码').required().error(new Error('账号不能为空')),
+        // password: Joi.string().min(3).max(24).example('1234').description('密码').required(),
         // password: Joi.string().min(3).error(new Error('长度不能小于3')).max(24).error(new Error('长度不能大于24')).example('1234').description('密码').required().error(new Error('必填'))
       }
     },
