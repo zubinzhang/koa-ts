@@ -8,6 +8,7 @@ import { CWErrors } from '../common/cw_error';
 import { Context } from 'koa';
 import { appLog } from '../common/logger';
 import { errCodeEnum } from '../common/api_errcode';
+import { formatResData } from '../common/util';
 
 export function handle(options?: any) {
   return async (ctx: Context) => {
@@ -41,7 +42,7 @@ export function handle(options?: any) {
       }
     }
 
-    ctx.body = result;
+    ctx.body = formatResData(result);
   };
 }
 
