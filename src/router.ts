@@ -4,6 +4,7 @@
 
 import * as Joi from 'joi';
 import * as Router from 'koa-router';
+import * as xmlParse from 'koa-xml-body';
 
 import config from './config';
 import { handle } from './middleware/router';
@@ -12,7 +13,7 @@ export function initRouter(): Router {
   const router = new Router();
 
   // 主页
-  router.all('/', ctx => {
+  router.all('/', xmlParse(), ctx => {
     ctx.body = `${config.name} hello world1112`;
   });
 

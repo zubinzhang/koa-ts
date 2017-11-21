@@ -9,6 +9,7 @@ import * as http from 'http';
 import * as koaBodyparser from 'koa-bodyparser';
 import * as koaFavicon from 'koa-favicon';
 
+import { bodyNull } from './middleware/bodyparser';
 import config from './config';
 import { extend } from './middleware/extend';
 import { handleError } from './middleware/error';
@@ -22,6 +23,7 @@ extend(app);
 // 中间件
 app.use(koaFavicon('./favicon.ico'));
 app.use(koaBodyparser());
+app.use(bodyNull());
 app.use(handleError());
 
 // 路由
