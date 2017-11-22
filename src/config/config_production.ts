@@ -40,8 +40,6 @@ const rabbitmq: RabbitMqConfig = {
     login: '',
     password: '',
     vhost: 'ciwong_vhost',
-  },
-  implOptions: {
     reconnect: true,
     reconnectBackoffTime: 10000, // 10秒尝试连接一次
   },

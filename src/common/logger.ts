@@ -4,10 +4,10 @@
 
 import * as log from 'cw-logger';
 
-import { resolve } from 'path';
+import { join } from 'path';
 
 const logConfig = {
-  logRoot: resolve(__dirname, './logs'), // 日志根目录(需根据实际情况设置)
+  logRoot: join(__dirname, '../../logs'), // 日志根目录(需根据实际情况设置)
   logLevel: 'info', // file
   logLevel4console: 'error', // console
   bunyan: {

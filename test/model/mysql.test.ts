@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { workModel } from '../../model';
+import { testModel } from '../../src/model';
 
 describe('mysql测试：', () => {
   it('findOne:', async () => {
-    const data = await workModel.doeworks.findOne({ raw: true, });
+    const data = await testModel.test.findOne({ raw: true, });
     expect(data).to.a('object');
   });
 });

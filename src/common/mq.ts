@@ -1,13 +1,12 @@
 /*
  * Created by Zubin on 2017-10-17 11:32:58
  */
+
+import MQ from 'cw-rabbitmq';
 import config from '../config';
-import rabbitmq from './rabbitmq_core';
 
 // 初始化mq
-export const submitMQ = rabbitmq.init({
-  connOptions: config.rabbitmq.connOptions,
-  implOptions: config.rabbitmq.implOptions,
+export const submitMQ = new MQ(config.rabbitmq.connOptions, {
   exchangeName: config.submitExchangeName,
   exchangeOption: {
     type: 'direct',
@@ -23,7 +22,7 @@ export const submitMQ = rabbitmq.init({
 
 /**
  * mq心跳监测
- * 
+ *
  * @export
  * @param {number} timeSpan 检测时间间隔,单位:s,默认10min
  */

@@ -4,6 +4,7 @@
 
 import { RedisOptions } from 'ioredis'
 import { Options as seqOptions } from 'sequelize';
+import { ConnectionOptions } from 'amqp';
 
 /**
  * rabbitmq配置
@@ -11,18 +12,7 @@ import { Options as seqOptions } from 'sequelize';
  * @interface RabbitMqConfig
  */
 export interface RabbitMqConfig {
-  connOptions: {
-    host: string;
-    port: number;
-    login: string;
-    password: string;
-    vhost?: string;
-    authMechanism?: string;
-  };
-  implOptions: {
-    reconnect: boolean;
-    reconnectBackoffTime: number;
-  };
+  connOptions: ConnectionOptions;
 }
 
 /**

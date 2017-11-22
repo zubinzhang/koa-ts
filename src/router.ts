@@ -13,17 +13,17 @@ export function initRouter(): Router {
   const router = new Router();
 
   // 主页
-  router.all('/', xmlParse(), ctx => {
+  router.all('/', ctx => {
     ctx.body = `${config.name} hello world1112`;
   });
 
-  router.get('/teacher/tests', handle({
+  router.post('/teacher/tests', xmlParse(), handle({
     auth: false,
     req: {
       headers: Joi.object().unknown(),
       body: Joi.object().unknown(),
       query: {
-        account: Joi.number().example('12345678901').description('邮箱/手机号码').required().error(new Error('账号不能为空')),
+        // account: Joi.number().example('12345678901').description('邮箱/手机号码').required().error(new Error('账号不能为空')),
         // password: Joi.string().min(3).max(24).example('1234').description('密码').required(),
         // password: Joi.string().min(3).error(new Error('长度不能小于3')).max(24).error(new Error('长度不能大于24')).example('1234').description('密码').required().error(new Error('必填'))
       }

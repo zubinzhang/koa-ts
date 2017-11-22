@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { redis } from '../../common/redis';
+import { redis } from '../../src/common/redis';
 
 describe('redis test', () => {
   it('set:', async () => {

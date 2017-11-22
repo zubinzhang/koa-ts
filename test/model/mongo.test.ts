@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { mongoModel } from '../../model';
+import { mongoModel } from '../../src/model';
 
 describe('mongo测试：', () => {
   it('findOne:', async () => {

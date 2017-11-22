@@ -29,13 +29,13 @@
     //     "chai",
     //     "sequelize"
     // ],
-    "outDir": "./build",
-    "rootDir": "./src"
+    "outDir": "./build"
   },
   "exclude": [
     "node_modules",
     "build",
     "**/*.test.ts",
+    "test/**/*",
     "temp"
   ],
   "compileOnSave": true,

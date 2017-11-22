@@ -9,20 +9,20 @@
     "dev": "tsc -w & nodemon build/app.js",
     "build": "npm run clear & tsc",
     "watch": "tsc -w",
-    "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts",
+    "test": "mocha --recursive --require ts-node/register test/**/*.test.ts",
     "lint": "tslint --type-check --project tsconfig.json \"src/**/*.ts\" --force",
     "clear": "rimraf build",
-    "model": "rimraf src/model/[库名] & sequelize-auto -o \"./src/model/[库名]\" -c \"create_model.json\" -d [库名] -h [数据库主机] -u [用户名] -p [端口] -x [密码] -e mysql -C -z"
+    "model": "rimraf src/model/dbtest & sequelize-auto -o \"./src/model/dbtest\" -c \"create_model.json\" -d test -h 192.168.1.49 -u root -p 3306 -x root -e mysql -C -z"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqp": "^0.2.6",
     "bluebird": "^3.5.1",
     "chai": "^4.1.2",
     "cw-logger": "^1.1.3",
-    "ioredis": "^3.2.1",
+    "cw-rabbitmq": "^1.0.10",
+    "cw-redis": "^1.0.7",
     "joi": "^13.0.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
@@ -43,12 +43,11 @@
     "validator": "^9.1.1"
   },
   "devDependencies": {
+    "@types/amqp": "^0.2.3",
     "@types/chai": "^4.0.4",
-    "@types/ioredis": "0.0.27",
     "@types/joi": "^13.0.0",
     "@types/koa": "^2.0.39",
     "@types/mocha": "^2.2.44",
-    "@types/moment": "^2.13.0",
     "@types/mongoose": "^4.7.24",
     "@types/node": "^8.0.33",
     "@types/node-schedule": "^1.2.0",
@@ -63,7 +62,6 @@
     "sequelize-auto": "^0.4.29",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
-    "tslint-config-airbnb": "^5.4.2",
     "typescript": "^2.5.3"
   }
 }
