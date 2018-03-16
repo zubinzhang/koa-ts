@@ -4,10 +4,7 @@
 
 // mq 消费
 
-import { mqCheckHealth, submitMQ } from '../common/mq';
-
-// mq心跳检测
-mqCheckHealth();
+import { submitMQ } from '../common/mq';
 
 submitMQ.subscribe({ ack: true }, async (message, headers, deliveryInfo, ack) => {
   console.log(message.data.toString(), headers, deliveryInfo);

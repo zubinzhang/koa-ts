@@ -6,21 +6,21 @@ import * as Bluebird from 'bluebird';
 import * as Sequelize from 'sequelize';
 import * as mondoModels from './mongo/db';
 import * as mongoose from 'mongoose';
-import * as testModels from './dbtest/db.tables'; //引入sequelize-auto生成的实体
+import * as testModels from './db_test/db.tables'; //引入sequelize-auto生成的实体
 
 import { appLog } from '../common/logger';
 import config from '../config';
 
 // 新建mysql数据库实例
-config.db.epaperWork.dbConfig.logging = sql => {
+config.db.db_test.dbConfig.logging = sql => {
   appLog.info(sql); // sql语句写入日志
 };
 
 const workSquelize = new Sequelize(
-  config.db.epaperWork.database,
-  config.db.epaperWork.userName,
-  config.db.epaperWork.password,
-  config.db.epaperWork.dbConfig,
+  config.db.db_test.database,
+  config.db.db_test.userName,
+  config.db.db_test.password,
+  config.db.db_test.dbConfig,
 );
 
 // 获取mysql实体

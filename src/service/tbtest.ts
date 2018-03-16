@@ -4,5 +4,5 @@
 import { testModel } from '../model';
 
 export function find() {
-  return testModel.test.findAll({ raw: true });
+  return testModel.userinfo.findAll({ raw: true });
 }
