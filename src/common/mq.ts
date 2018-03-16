@@ -6,7 +6,7 @@ import * as MQ from 'cw-rabbitmq';
 import config from '../config';
 
 // 初始化mq
-export const submitMQ = new MQ(config.rabbitmq.connOptions, {
+export const testMQ = new MQ(config.rabbitmq.connOptions, {
   exchangeName: config.exchangeName,
   exchangeOption: {
     type: 'direct',
