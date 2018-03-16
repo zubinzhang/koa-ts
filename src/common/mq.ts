@@ -2,7 +2,7 @@
  * Created by Zubin on 2017-10-17 11:32:58
  */
 
-import MQ from 'cw-rabbitmq';
+import * as MQ from 'cw-rabbitmq';
 import config from '../config';
 
 // 初始化mq

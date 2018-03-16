@@ -11,7 +11,6 @@ import * as koaBodyparser from 'koa-bodyparser';
 import * as koaFavicon from 'koa-favicon';
 import * as logger from 'koa-logger';
 
-import { bodyNull } from './middleware/bodyparser';
 import config from './config';
 import { extend } from './middleware/extend';
 import { handleError } from './middleware/error';
