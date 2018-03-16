@@ -11,7 +11,7 @@ const dbTest: DBConfig = {
   password: 'root',
   database: 'db_test',
   dbConfig: {
-    host: '192.168.1.49',
+    host: '127.0.0.1',
     port: 3306,
     dialect: 'mysql',
     timezone: '+08:00',
@@ -35,9 +35,9 @@ const dbTest: DBConfig = {
  */
 const rabbitmq: RabbitMqConfig = {
   connOptions: {
-    host: '192.168.2.163',
+    host: '127.0.0.1',
     port: 5672,
-    login: 'ciwong2017',
+    login: '123456',
     password: '123456',
     vhost: 'test_vhost',
     reconnect: true,
@@ -47,9 +47,9 @@ const rabbitmq: RabbitMqConfig = {
 
 // redis 配置
 const redis = {
-  host: '192.168.2.163',
+  host: '127.0.0.1',
   port: 6379,
-  password: 'ciwongrds',
+  password: '123456',
   db: 5,
   connectTimeout: 1000,
   lazyConnect: false,
@@ -64,7 +64,7 @@ export default {
   },
   redis,
   mongo: {
-    db_test: 'mongodb://192.168.2.163:27017/db_test?poolSize=50',
+    db_test: 'mongodb://127.0.0.1:27017/db_test?poolSize=50',
   },
   rabbitmq,
   queueName: 'queue.epaper.test.development',
