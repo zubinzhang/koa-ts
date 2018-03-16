@@ -19,7 +19,10 @@ npm run model # 生成model,默认目录在src/model/[dbname]下
 ## 说明
 + 开发时直接运行``` npm run dev ``` babel即时编译并运行,并检测改动的文件自动编译
 + 建议nodejs使用8以上lts版本，不保证windows下兼容性
-+ 运行请先修改配置文件（src/config/）,端口,配置好数据库，mongodb,在package.json->scripts->model中配置好数据库信息
++ 运行请先修改配置文件（src/config/）,端口,配置好数据库，mongodb,在package.json->scripts->model中配置好数据库信息，配置请参考
+```
+"model": "rimraf src/model/[库名] && sequelize-auto -o \"./src/model/[库名]\" -c \"create_model.json\" -d [库名] -h [数据库地址] -u [用户名] -p [端口] -x [密码] -e mysql -C -z"
+```
 
 ## mysql使用方法
 > [sequelize](http://docs.sequelizejs.com/)文档请参考http://docs.sequelizejs.com/
