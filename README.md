@@ -42,9 +42,10 @@ testModel.userinfo.findOne({ raw: true });
 ```
 
 ## mongodb使用方法
-```js
+
 > [mongoose](http://mongoosejs.com)文档请参考http://mongoosejs.com
 
+```js
 import { mongoModel } from './src/model';
 import * as moment from 'moment';
 
