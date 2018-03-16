@@ -14,7 +14,6 @@ import { formatResData } from '../common/util';
 
 export function handleError(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
-    appLog.info('\n========start:开始本次请求跟踪=========');
     appLog.info(JSON.stringify({
       url: ctx.url,
       headers: ctx.headers,
@@ -33,20 +32,6 @@ export function handleError(): Middleware {
       );
 
       appLog.error(`出现异常错误:${err.toString()}\n错误堆栈：${err.stack}\n响应数据:${JSON.stringify(ctx.body)}`);
-    } finally {
-      // 保存post请求的日志
-      if (ctx.req.method.toUpperCase() === 'POST') {
-        // const urls = ctx.url.split('/');
-
-        // mongoModel.logger.create({
-        //   url: ctx.url,
-        //   createAt: moment().format('YYYY-MM-DD HH:mm:ss'),
-        //   header: ctx.headers,
-        //   reqData: ctx.request.body,
-        //   resData: ctx.body,
-        //   name: urls[urls.length - 1],
-        // }).catch(() => true);
-      }
     }
   };
 }

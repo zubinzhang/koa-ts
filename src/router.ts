@@ -4,7 +4,6 @@
 
 import * as Joi from 'joi';
 import * as Router from 'koa-router';
-import * as xmlParse from 'koa-xml-body';
 
 import config from './config';
 import { handle } from './middleware/router';
@@ -17,21 +16,21 @@ export function initRouter(): Router {
     ctx.body = `Hello ${config.name}`;
   });
 
-  router.post('/teacher/tests', xmlParse(), handle({
+  router.get('/user/getUserListByGroup',  handle({
     auth: false,
     req: {
       headers: Joi.object().unknown(),
       body: Joi.object().unknown(),
       query: {
-        // account: Joi.number().example('12345678901').description('邮箱/手机号码').required().error(new Error('账号不能为空')),
-        // password: Joi.string().min(3).max(24).example('1234').description('密码').required(),
-        // password: Joi.string().min(3).error(new Error('长度不能小于3')).max(24).error(new Error('长度不能大于24')).example('1234').description('密码').required().error(new Error('必填'))
+        group: Joi.number().required().error(new Error('用户组不能为空')),
       }
     },
-    // res: {
-    //   id: Joi.number().min(3).required()
-    // }
-
+    res: Joi.array().required().items({
+      id: Joi.number().required(),
+      userId: Joi.number().required(),
+      userName: Joi.string().required(),
+      group: Joi.number().required(),
+    }),
   }));
 
   //自动适配路由
