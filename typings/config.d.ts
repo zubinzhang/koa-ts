@@ -8,7 +8,7 @@ import { ConnectionOptions } from 'amqp';
 
 /**
  * rabbitmq配置
- * 
+ *
  * @interface RabbitMqConfig
  */
 export interface RabbitMqConfig {
@@ -17,7 +17,7 @@ export interface RabbitMqConfig {
 
 /**
  * 数据库配置
- * 
+ *
  * @interface DBConfig
  */
 export interface DBConfig {
@@ -29,21 +29,22 @@ export interface DBConfig {
 
 /**
  * 配置文件
- * 
+ *
  * @interface IConfig
  */
 export interface IConfig {
+  [x: string]: any;
   debug?: boolean;
   name?: string,
   port: number;
   db: {
-    epaperWork?: DBConfig;
+    [x:string]: DBConfig;
   };
   mongo?: {
-    epaperLog?: string,
+    [x:string]: string,
   };
   redis?: RedisOptions;
   rabbitmq: RabbitMqConfig;
-  submitQueueName: string;
-  submitExchangeName: string;
+  queueName: string;
+  exchangeName: string;
 }

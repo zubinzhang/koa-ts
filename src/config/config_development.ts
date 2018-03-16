@@ -6,10 +6,10 @@ import { DBConfig, IConfig, RabbitMqConfig } from '../../typings/config';
 /**
  * 开发数据库配置
  */
-const epaperWork: DBConfig = {
-  userName: '',
-  password: '',
-  database: '',
+const dbTest: DBConfig = {
+  userName: 'root',
+  password: 'root',
+  database: 'db_test',
   dbConfig: {
     host: '',
     port: 3306,
@@ -35,11 +35,11 @@ const epaperWork: DBConfig = {
  */
 const rabbitmq: RabbitMqConfig = {
   connOptions: {
-    host: '',
+    host: '192.168.2.163',
     port: 5672,
-    login: '',
-    password: '',
-    vhost: 'ciwong_vhost',
+    login: 'ciwong2017',
+    password: '123456',
+    vhost: 'test_vhost',
     reconnect: true,
     reconnectBackoffTime: 10000, // 10秒尝试连接一次
   },
@@ -49,7 +49,7 @@ const rabbitmq: RabbitMqConfig = {
 export default {
   port: 10086,
   db: {
-    epaperWork,
+    db_test: dbTest,
   },
   redis: {
     host: '',
@@ -61,9 +61,9 @@ export default {
     keyPrefix: '',
   },
   mongo: {
-    epaperLog: 'mongodb://×××××?poolSize=50',
+    epaperLog: 'mongodb://192.168.2.163:27017?poolSize=50',
   },
   rabbitmq,
-  submitQueueName: 'queue.epaper.submit.development',
-  submitExchangeName: 'queue.epaper.submit.development',
+  queueName: 'queue.epaper.test.development',
+  exchangeName: 'queue.epaper.test.development',
 } as IConfig;
