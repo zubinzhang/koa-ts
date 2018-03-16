@@ -3,20 +3,16 @@
  */
 import { Document, Schema } from 'mongoose';
 
-export interface ILogger extends Document {
-  url: string;
-  createAt: string;
-  header: any;
-  reqData: any;
-  resData: any;
-  name: string;
+export interface IUserInfo extends Document {
+  userId: number;
+  userName: string;
+  group: number;
 }
 
-export const LoggerSchema = new Schema({
-  url: String,
-  createAt: String,
-  header: Schema.Types.Mixed,
-  reqData: Schema.Types.Mixed,
-  resData: Schema.Types.Mixed,
-  name: String,
+export interface IUserInfoAttrbute extends IUserInfo, Document { }
+
+export const UserInfoSchema = new Schema({
+  userId: Number,
+  userName: String,
+  group: Number,
 });

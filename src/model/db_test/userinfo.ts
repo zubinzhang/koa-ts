@@ -22,6 +22,11 @@ module.exports = function(sequelize: sequelize.Sequelize, DataTypes: DataTypes) 
 			type: DataTypes.STRING(0),
 			allowNull: false,
 			field: 'userName'
+		},
+		group: {
+			type: DataTypes.BIGINT,
+			allowNull: false,
+			field: 'group'
 		}
 	}, {
 		tableName: 'userinfo',

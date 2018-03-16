@@ -9,7 +9,7 @@
     "dev": "npm run build && concurrently \"tsc -w\" \"npm run debug\"",
     "build": "npm run clear && tsc",
     "watch": "npm run clear && tsc -w",
-    "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts",
+    "test": "mocha --recursive --require ts-node/register test/**/*.test.ts",
     "lint": "tslint --type-check --project tsconfig.json \"src/**/*.ts\" --force",
     "clear": "rimraf build",
     "model": "rimraf src/model/db_test && sequelize-auto -o \"./src/model/db_test\" -c \"create_model.json\" -d db_test -h 192.168.1.49 -u root -p 3306 -x root -e mysql -C -z"

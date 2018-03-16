@@ -6,12 +6,12 @@ import { DBConfig, IConfig, RabbitMqConfig } from '../../typings/config';
 /**
  * 开发数据库配置
  */
-const epaperWork: DBConfig = {
-  userName: '',
-  password: '',
-  database: '',
+const dbTest: DBConfig = {
+  userName: 'root',
+  password: 'root',
+  database: 'db_test',
   dbConfig: {
-    host: '',
+    host: '192.168.1.49',
     port: 3306,
     dialect: 'mysql',
     timezone: '+08:00',
@@ -35,35 +35,38 @@ const epaperWork: DBConfig = {
  */
 const rabbitmq: RabbitMqConfig = {
   connOptions: {
-    host: '',
+    host: '192.168.2.163',
     port: 5672,
-    login: '',
-    password: '',
-    vhost: 'ciwong_vhost',
+    login: 'ciwong2017',
+    password: '123456',
+    vhost: 'test_vhost',
     reconnect: true,
     reconnectBackoffTime: 10000, // 10秒尝试连接一次
   },
+};
+
+// redis 配置
+const redis = {
+  host: '192.168.2.163',
+  port: 6379,
+  password: '',
+  db: 5,
+  connectTimeout: 1000,
+  lazyConnect: false,
+  keyPrefix: '',
 };
 
 
 export default {
   port: 10086,
   db: {
-    epaperWork,
+    db_test: dbTest,
   },
-  redis: {
-    host: '',
-    port: 6379,
-    password: '',
-    db: 5,
-    connectTimeout: 1000,
-    lazyConnect: false,
-    keyPrefix: '',
-  },
+  redis,
   mongo: {
-    epaperLog: 'mongodb://×××××?poolSize=50',
+    db_test: 'mongodb://192.168.2.163:27017/db_test?poolSize=50',
   },
   rabbitmq,
-  queueName: 'queue.epaper.submit.development',
-  exchangeName: 'queue.epaper.submit.development',
+  queueName: 'queue.epaper.test.development',
+  exchangeName: 'queue.epaper.test.development',
 } as IConfig;

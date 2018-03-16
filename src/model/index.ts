@@ -16,7 +16,7 @@ config.db.db_test.dbConfig.logging = sql => {
   appLog.info(sql); // sql语句写入日志
 };
 
-const workSquelize = new Sequelize(
+const testSquelize = new Sequelize(
   config.db.db_test.database,
   config.db.db_test.userName,
   config.db.db_test.password,
@@ -24,17 +24,17 @@ const workSquelize = new Sequelize(
 );
 
 // 获取mysql实体
-const testModel = testModels.getModels(workSquelize);
+const testModel = testModels.getModels(testSquelize);
 
 
-export { Sequelize, workSquelize, testModel };
+export { Sequelize, testSquelize, testModel };
 
 // 不用mongodb请删除下面代码
 
 // Use bluebird promises
 (<any>mongoose).Promise = Bluebird;
 // 新建mongodb连接
-mongoose.connect(config.mongo.epaperLog, {
+mongoose.connect(config.mongo.db_test, {
   // autoReconnect: true,
   // poolSize: 10,
   useMongoClient: true,

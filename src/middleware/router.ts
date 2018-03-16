@@ -6,13 +6,11 @@ import * as Joi from 'joi';
 
 import { CWErrors } from '../common/cw_error';
 import { Context } from 'koa';
-import { appLog } from '../common/logger';
 import { errCodeEnum } from '../common/api_errcode';
 import { formatResData } from '../common/util';
 
 export function handle(options?: any) {
   return async (ctx: Context) => {
-    appLog.info('validate...');
 
     // 验证path,找到相应的action
     const action = await vailPath(ctx);
