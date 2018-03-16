@@ -3,7 +3,6 @@
  */
 
 import 'source-map-support/register';
-import './service/subscribe';
 
 import * as Koa from 'koa';
 import * as http from 'http';
