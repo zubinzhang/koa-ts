@@ -6,13 +6,13 @@
   "scripts": {
     "start": "node build/app.js",
     "debug": "nodemon  ./build/app.js",
-    "dev": "tsc -w & nodemon build/app.js",
-    "build": "npm run clear & tsc",
-    "watch": "tsc -w",
+    "dev": "npm run build && concurrently \"tsc -w\" \"npm run debug\"",
+    "build": "npm run clear && tsc",
+    "watch": "npm run clear && tsc -w",
     "test": "mocha --recursive --require ts-node/register src/test/**/*.test.ts",
     "lint": "tslint --type-check --project tsconfig.json \"src/**/*.ts\" --force",
     "clear": "rimraf build",
-    "model": "rimraf src/model/[库名] & sequelize-auto -o \"./src/model/[库名]\" -c \"create_model.json\" -d [库名] -h [数据库主机] -u [用户名] -p [端口] -x [密码] -e mysql -C -z"
+    "model": "rimraf src/model/[库名] && sequelize-auto -o \"./src/model/[库名]\" -c \"create_model.json\" -d [库名] -h [数据库主机] -u [用户名] -p [端口] -x [密码] -e mysql -C -z"
   },
   "keywords": [],
   "author": "",
@@ -52,6 +52,7 @@
     "@types/node-schedule": "^1.2.0",
     "@types/sequelize": "^4.0.76",
     "@types/validator": "^6.3.0",
+    "concurrently": "^3.5.1",
     "del": "^3.0.0",
     "nodemon": "^1.12.1",
     "rimraf": "^2.6.1",
