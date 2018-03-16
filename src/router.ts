@@ -14,7 +14,7 @@ export function initRouter(): Router {
 
   // 主页
   router.all('/', ctx => {
-    ctx.body = `${config.name} hello world1112`;
+    ctx.body = `Hello ${config.name}`;
   });
 
   router.post('/teacher/tests', xmlParse(), handle({
@@ -35,7 +35,7 @@ export function initRouter(): Router {
   }));
 
   //自动适配路由
-  // router.all('/*', handle());
+  // router.all('/*', handle({}));
 
   return router;
 }
