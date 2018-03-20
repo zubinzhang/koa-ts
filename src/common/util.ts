@@ -9,6 +9,14 @@ import { errCodeEnum, retCodeEnum } from './api_errcode';
 
 import { v4 as uuidV4 } from 'uuid';
 
+interface IResData<T> {
+  ret: number;
+  errcode: number;
+  msg?: string;
+  data?: T;
+  uuid: string;
+}
+
 /**
  * 结构化返回信息
  * @export

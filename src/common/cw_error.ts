@@ -4,6 +4,11 @@
 
 import { errCodeEnum, retCodeEnum } from './api_errcode';
 
+interface IError {
+  retCode: number;
+  errCode: number;
+}
+
 export class CWErrors extends Error implements IError {
   retCode: number;
   errCode: number;
