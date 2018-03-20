@@ -1,7 +1,7 @@
 /*
  * Created by Zubin on 2017-10-31 14:18:45
  */
-import { DBConfig, IConfig, RabbitMqConfig } from '../../typings/config';
+import { DBConfig, IConfig, RabbitMqConfig } from './config';
 
 /**
  * 开发数据库配置

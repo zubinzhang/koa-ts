@@ -6,6 +6,11 @@ import * as log from 'cw-logger';
 
 import { join } from 'path';
 
+interface Ilog {
+  info(...logStrs: string[]): void;
+  error(err: Error | string): void;
+}
+
 const logConfig = {
   logRoot: join(__dirname, '../../logs'), // 日志根目录(需根据实际情况设置)
   logLevel: 'info', // file
