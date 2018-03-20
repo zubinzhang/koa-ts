@@ -1,7 +1,8 @@
 /*
  * Created by Zubin on 2017-10-20 15:13:13
  */
-import { IConfig } from '../../typings/config';
+
+import { IConfig } from './config';
 
 // tslint:disable-next-line:no-var-requires
 const packageJson = require('../../package.json');
