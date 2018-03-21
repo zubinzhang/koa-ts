@@ -1,7 +1,5 @@
 FROM node:8-alpine
 
-MAINTAINER zhangzhibin <zhangzhibin@ciwong.com>
-
 # Install base packages, set timezone
 RUN apk update && apk add curl bash tree tzdata \
   && npm config set registry http://registry.npm.taobao.org \
