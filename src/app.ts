@@ -29,8 +29,7 @@ app.use(handleError());
 // 路由
 const router = initRouter();
 
-app.use(router.routes())
-  .use(router.allowedMethods());
+app.use(router.routes()).use(router.allowedMethods());
 
 // create server
 const server = http.createServer(app.callback());
@@ -41,13 +40,12 @@ app.on('error', (err, ctx) => {
 });
 
 // 监听所有未处理的Promise.reject异常
-process.on('unhandledRejection', function (err) {
+process.on('unhandledRejection', function(err) {
   console.error('process-on-unhandledRejection事件:' + err.toString());
 });
 
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', function(err) {
   console.error('process-on-uncaughtException,请检查日志,[detail]:' + err.toString());
-
 });
 
 server.listen(config.port);
