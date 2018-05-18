@@ -29,7 +29,6 @@ const dbTest: DBConfig = {
   },
 };
 
-
 /**
  * 开发mq配置
  */
@@ -56,9 +55,8 @@ const redis = {
   keyPrefix: '',
 };
 
-
 export default {
-  port: 10086,
+  port: 10087,
   db: {
     db_test: dbTest,
   },

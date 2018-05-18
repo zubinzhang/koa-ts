@@ -11,7 +11,6 @@ import { formatResData } from '../common/util';
 
 export function handle(options?: any) {
   return async (ctx: Context) => {
-
     // 验证path,找到相应的action
     const action = await vailPath(ctx);
 
@@ -54,21 +53,19 @@ export function handle(options?: any) {
  * @returns
  */
 async function vailPath(ctx: any) {
-  const scheme = ctx.path.toLowerCase().split('/').filter(item => item.trim().length > 0);
+  const scheme = ctx.path.split('/').filter(item => item.trim().length > 0);
   if (scheme.length <= 1) {
     throw new CWErrors('未找到指定的接口');
   }
   if (scheme.length === 2) {
     scheme.splice(1, 0, 'v1');
   }
-  const controller = await import(`../controller/${scheme.slice(0, 2).join('/')}`)
-    .catch(() => {
-      throw new Error('未找到指定的控制器');
-    });
+  const controller = await import(`../controller/${scheme.slice(0, 2).join('/')}`).catch(() => {
+    throw new Error('未找到指定的控制器');
+  });
   const action = controller[scheme[2]];
   if (!action) {
     throw new CWErrors('未找到指定的接口');
   }
   return action;
 }
-
