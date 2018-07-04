@@ -10,10 +10,10 @@ import * as koaBodyparser from 'koa-bodyparser';
 import * as koaFavicon from 'koa-favicon';
 import * as logger from 'koa-logger';
 
+import Router from './router';
 import config from './config';
 import { extend } from './middleware/extend';
 import { handleError } from './middleware/error';
-import { initRouter } from './router';
 
 const app = new Koa();
 
@@ -27,7 +27,7 @@ app.use(logger());
 app.use(handleError());
 
 // 路由
-const router = initRouter();
+const router = Router.init();
 
 app.use(router.routes()).use(router.allowedMethods());
 
@@ -38,6 +38,8 @@ const server = http.createServer(app.callback());
 app.on('error', (err, ctx) => {
   console.log(`app-on-error事件:${err.toString()} ctx.request: ${JSON.stringify(ctx.request)}`);
 });
+
+// app.initRouter();
 
 // 监听所有未处理的Promise.reject异常
 process.on('unhandledRejection', function(err) {

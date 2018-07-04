@@ -2,46 +2,29 @@
  * Created by Zubin on 2017-11-15 18:20:08
  */
 
-import * as Joi from 'joi';
-import * as Router from 'koa-router';
+import * as Koa from 'koa';
+import * as KoaRouter from 'koa-router';
+import * as glob from 'glob';
 
-import config from './config';
-import { handle } from './middleware/router';
+import { join } from 'path';
 
-export function initRouter(): Router {
-  const router = new Router();
+const router = new KoaRouter();
 
-  // 主页
-  router.all('/', ctx => {
-    ctx.body = `Hello ${config.name}1111`;
-  });
+export default class Router {
+  static routerSet: Set<{
+    method: string;
+    path: string;
+    middlewares: Koa.Middleware[];
+  }> = new Set();
 
-  router.get(
-    '/user/getUserListByGroup',
-    handle({
-      auth: false,
-      req: {
-        headers: Joi.object().unknown(),
-        body: Joi.object().unknown(),
-        query: {
-          group: Joi.number()
-            .required()
-            .error(new Error('用户组不能为空')),
-        },
-      },
-      res: Joi.array()
-        .required()
-        .items({
-          id: Joi.number().required(),
-          userId: Joi.number().required(),
-          userName: Joi.string().required(),
-          group: Joi.number().required(),
-        }),
-    }),
-  );
+  static init() {
+    // 加载所有控制器
+    glob.sync(join(__dirname, './controller/**/*.js')).forEach(require);
 
-  //自动适配路由
-  // router.all('/*', handle({}));
+    for (const { method, path, middlewares } of this.routerSet) {
+      router[method](path, ...middlewares);
+    }
 
-  return router;
+    return router;
+  }
 }

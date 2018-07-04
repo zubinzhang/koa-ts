@@ -5,6 +5,7 @@
 // import * as crypto from 'crypto';
 // import * as moment from 'moment';
 
+import { compact, concat } from 'lodash';
 import { errCodeEnum, retCodeEnum } from './api_errcode';
 
 import { v4 as uuidV4 } from 'uuid';
@@ -27,7 +28,12 @@ interface IResData<T> {
  * @param {string} [msg='success']
  * @returns {IResData<T>}
  */
-export function formatResData<T>(data: T, ret: number = retCodeEnum.success, errcode: number = errCodeEnum.success, msg: string = 'success'): IResData<T> {
+export function formatResData<T>(
+  data: T,
+  ret: number = retCodeEnum.success,
+  errcode: number = errCodeEnum.success,
+  msg: string = 'success',
+): IResData<T> {
   return {
     ret,
     errcode,
@@ -51,4 +57,8 @@ export function convertFloat(data: string, digit: number = 2): number {
   } catch (error) {
     return 0;
   }
+}
+
+export function toArray(...args) {
+  return compact(concat([], ...args));
 }

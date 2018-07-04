@@ -14,15 +14,19 @@ import { formatResData } from '../common/util';
 
 export function handleError(): Middleware {
   return async (ctx: Context, next: () => Promise<any>) => {
-    appLog.info(JSON.stringify({
-      url: ctx.url,
-      headers: ctx.headers,
-      query: ctx.request.query,
-      body: ctx.request.body,
-    }));
+    appLog.info(
+      JSON.stringify({
+        url: ctx.url,
+        headers: ctx.headers,
+        query: ctx.request.query,
+        body: ctx.request.body,
+      }),
+    );
 
     try {
-      await next();
+      const result = await next();
+
+      ctx.body = ctx.body || formatResData(result);
     } catch (err) {
       ctx.body = formatResData(
         null,
@@ -31,8 +35,11 @@ export function handleError(): Middleware {
         err.message || err.toString(),
       );
 
-      appLog.error(`出现异常错误:${err.toString()}\n错误堆栈：${err.stack}\n响应数据:${JSON.stringify(ctx.body)}`);
+      appLog.error(
+        `出现异常错误:${err.toString()}\n错误堆栈：${err.stack}\n响应数据:${JSON.stringify(
+          ctx.body,
+        )}`,
+      );
     }
   };
 }
-
