@@ -3,27 +3,20 @@
 import * as Joi from 'joi';
 import * as assert from 'assert';
 
+import { Context, Middleware } from 'koa';
+
 import { CWErrors } from '../common/cw_error';
-import { Context } from 'koa';
 import { errCodeEnum } from '../common/api_errcode';
 import { isEmpty } from 'lodash';
 import { isObject } from 'util';
 import { toArray } from '../common/util';
 
 export function validateQuery(schema) {
-  return function(target: any, name: string, descriptor: PropertyDescriptor) {
-    target[name] = toArray(middleware(schema, 'query'), target[name]);
-
-    return descriptor;
-  };
+  return middlewareDecorator(ValidateMW(schema, 'query'));
 }
 
 export function validateBody(schema) {
-  return function(target: any, name: string, descriptor: PropertyDescriptor) {
-    target[name] = toArray(middleware(schema, 'body'), target[name]);
-
-    return descriptor;
-  };
+  return middlewareDecorator(ValidateMW(schema, 'body'));
 }
 
 /**
@@ -33,7 +26,7 @@ export function validateBody(schema) {
  * @param {string} [type='query']
  * @returns
  */
-function middleware(schema: any, type: string = 'query') {
+function ValidateMW(schema: any, type: string = 'query') {
   assert(!isEmpty(schema), 'schema is empty');
   assert(isObject(schema), 'schema should be object');
 
@@ -60,16 +53,24 @@ function middleware(schema: any, type: string = 'query') {
 export function allow(...contentTypes: string[]) {
   assert(contentTypes.length > 0, 'ContentType is empty');
 
-  return function(target: any, name: string, descriptor: PropertyDescriptor) {
-    target[name] = toArray(mw, target[name]);
-
-    return descriptor;
-  };
-
-  async function mw(ctx: Context, next: Function) {
+  return middlewareDecorator((ctx: Context, next: Function) => {
     if (!ctx.is(contentTypes)) {
       throw new CWErrors('不支持当前表单类型');
     }
     return next();
-  }
+  });
+}
+
+/**
+ * 中间件装饰器
+ *
+ * @param {Middleware} mw
+ * @returns
+ */
+function middlewareDecorator(mw: Middleware) {
+  return function(target: any, name: string, descriptor: PropertyDescriptor) {
+    const values = toArray(mw, Reflect.get(target, name)); // 把中间件插入数组开头
+    Reflect.set(target, name, values);
+    return descriptor;
+  };
 }

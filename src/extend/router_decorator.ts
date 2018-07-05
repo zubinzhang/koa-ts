@@ -44,7 +44,7 @@ function addRouterDecorator(path: string, method: string) {
     Router.routerSet.add({
       method: method,
       path,
-      middlewares: toArray(target[name]),
+      middlewares: toArray(Reflect.get(target, name)),
     });
 
     return descriptor;
