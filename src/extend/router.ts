@@ -20,7 +20,7 @@ export default class Router {
   // 用于存储路由信息
   static routerSet: Set<{
     method: string;
-    path: string;
+    path: string[];
     middlewares: Koa.Middleware[];
   }> = new Set();
 

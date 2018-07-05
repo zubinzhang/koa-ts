@@ -7,24 +7,24 @@ import * as assert from 'assert';
 import Router from './router';
 import { toArray } from '../common/util';
 
-export function get(path: string) {
-  return addRouterDecorator(path, 'get');
+export function get(...paths: string[]) {
+  return addRouterDecorator(paths, 'get');
 }
 
-export function post(path: string) {
-  return addRouterDecorator(path, 'post');
+export function post(...paths: string[]) {
+  return addRouterDecorator(paths, 'post');
 }
 
-export function all(path: string) {
-  return addRouterDecorator(path, 'all');
+export function all(...paths: string[]) {
+  return addRouterDecorator(paths, 'all');
 }
 
-export function put(path: string) {
-  return addRouterDecorator(path, 'put');
+export function put(...paths: string[]) {
+  return addRouterDecorator(paths, 'put');
 }
 
-export function del(path: string) {
-  return addRouterDecorator(path, 'delete');
+export function del(...paths: string[]) {
+  return addRouterDecorator(paths, 'delete');
 }
 
 /**
@@ -34,16 +34,14 @@ export function del(path: string) {
  * @param {string} method 方法
  * @returns
  */
-function addRouterDecorator(path: string, method: string) {
-  assert(
-    typeof method === 'string' && typeof path === 'string',
-    'method and path should be string',
-  );
+function addRouterDecorator(paths: string[], method: string) {
+  assert(paths.length > 0, 'paths is empty');
+  assert(typeof method === 'string', 'method should be string');
 
   return (target: any, name: string, descriptor: PropertyDescriptor) => {
     Router.routerSet.add({
       method: method,
-      path,
+      path: paths,
       middlewares: toArray(Reflect.get(target, name)),
     });
 

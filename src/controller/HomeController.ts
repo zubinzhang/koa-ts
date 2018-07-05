@@ -5,7 +5,7 @@ import * as router from '../extend/router_decorator';
 import { Context } from 'koa';
 
 export default class HomeController {
-  @router.all('/')
+  @router.all('/', '/home')
   async index(ctx: Context) {
     ctx.body = 'Hello World';
   }
