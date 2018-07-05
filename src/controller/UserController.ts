@@ -19,4 +19,15 @@ export default class UserController {
   async getUserListByGroup(ctx: Context) {
     return getUserInfoList(ctx.params);
   }
+
+  @router.post('/user/setUserGroup')
+  @validateQuery({
+    userId: Joi.number().required(),
+    group: Joi.number().required(),
+  })
+  async setUserGroup(ctx: Context) {
+    // await getUserInfoList(ctx.params);
+    // ctx.error('111');
+    return ctx.params;
+  }
 }

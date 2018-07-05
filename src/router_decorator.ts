@@ -23,7 +23,7 @@ export function post(path: string, middleware?: Middleware) {
     Router.routerSet.add({
       method: 'post',
       path,
-      middlewares: [middleware, target[name]].filter(item => !!item),
+      middlewares: toArray(middleware, target[name]),
     });
 
     return descriptor;
@@ -35,7 +35,7 @@ export function all(path: string, middleware?: Middleware) {
     Router.routerSet.add({
       method: 'all',
       path,
-      middlewares: [middleware, target[name]].filter(item => !!item),
+      middlewares: toArray(middleware, target[name]),
     });
 
     return descriptor;
@@ -47,7 +47,7 @@ export function put(path: string, middleware?: Middleware) {
     Router.routerSet.add({
       method: 'put',
       path,
-      middlewares: [middleware, target[name]].filter(item => !!item),
+      middlewares: toArray(middleware, target[name]),
     });
 
     return descriptor;
@@ -59,7 +59,7 @@ export function del(path: string, middleware?: Middleware) {
     Router.routerSet.add({
       method: 'delete',
       path,
-      middlewares: [middleware, target[name]].filter(item => !!item),
+      middlewares: toArray(middleware, target[name]),
     });
 
     return descriptor;
