@@ -19,11 +19,16 @@ export default class Router {
 
   static init() {
     // 加载所有控制器
-    glob.sync(join(__dirname, './controller/**/*.js')).forEach(require);
+    glob.sync(join(__dirname, '../controller/**/*.js')).forEach(require);
 
     for (const { method, path, middlewares } of this.routerSet) {
       router[method](path, ...middlewares);
     }
+
+    router.all('*', (ctx: Koa.Context) => {
+      ctx.status = 404;
+      ctx.error('Router Not Found');
+    });
 
     return router;
   }

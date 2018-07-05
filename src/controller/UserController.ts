@@ -3,13 +3,21 @@
  */
 
 import * as Joi from 'joi';
-import * as router from '../router_decorator';
+import * as router from '../extend/router_decorator';
+
+import { allow, validateBody, validateQuery } from '../extend/decorator';
+import { getUserInfoList, updateUserInfo } from '../service/userInfo';
 
 import { Context } from 'koa';
-import { getUserInfoList } from '../service/userInfo';
-import { validateQuery } from '../decorator';
 
 export default class UserController {
+  /**
+   * 获取用户列表
+   *
+   * @param {Context} ctx
+   * @returns
+   * @memberof UserController
+   */
   @router.get('/user/getUserListByGroup')
   @validateQuery({
     group: Joi.number()
@@ -20,14 +28,20 @@ export default class UserController {
     return getUserInfoList(ctx.params);
   }
 
-  @router.post('/user/setUserGroup')
-  @validateQuery({
+  /**
+   * 修改用户信息
+   *
+   * @param {Context} ctx
+   * @returns
+   * @memberof UserController
+   */
+  @router.post('/user/setUserInfo')
+  @allow('json')
+  @validateBody({
     userId: Joi.number().required(),
     group: Joi.number().required(),
   })
-  async setUserGroup(ctx: Context) {
-    // await getUserInfoList(ctx.params);
-    // ctx.error('111');
-    return ctx.params;
+  async setUserInfo(ctx: Context) {
+    return updateUserInfo({ group: ctx.params.group }, { userId: ctx.params.userId });
   }
 }
