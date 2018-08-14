@@ -41,7 +41,7 @@ function addRouterDecorator(paths: string[], method: string) {
   return (target: any, name: string, descriptor: PropertyDescriptor) => {
     Router.routerSet.add({
       method: method,
-      path: paths,
+      path: paths.map(p => p.toLowerCase()),
       middlewares: toArray(Reflect.get(target, name)),
     });
 

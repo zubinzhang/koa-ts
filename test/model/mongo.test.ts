@@ -1,6 +1,6 @@
-import { expect } from 'chai';
-import { mongoModel } from '../../src/model';
 import * as moment from 'moment';
+
+import { mongoModel } from '../../src/model';
 
 describe('mongo测试：', () => {
   it('create:', async () => {
@@ -9,12 +9,12 @@ describe('mongo测试：', () => {
       userName: '单元测试添加',
       group: 1,
     });
-    expect(data).to.a('object');
+    expect(data).toBeTruthy();
   });
 
   it('findOne:', async () => {
     const data = await mongoModel.userInfo.findOne();
 
-    expect(data).to.a('object');
+    expect(data).toBeTruthy();
   });
 });

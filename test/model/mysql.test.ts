@@ -1,6 +1,6 @@
-import { expect } from 'chai';
-import { testModel } from '../../src/model';
 import * as moment from 'moment';
+
+import { testModel } from '../../src/model';
 
 describe('mysql测试：', () => {
   it('create:', async () => {
@@ -9,11 +9,11 @@ describe('mysql测试：', () => {
       userName: '单元测试添加',
       group: 1,
     });
-    expect(data).to.a('object');
+    expect(data).toBeTruthy();
   });
 
   it('findOne:', async () => {
-    const data = await testModel.userinfo.findOne({ raw: true, });
-    expect(data).to.a('object');
+    const data = await testModel.userinfo.findOne({ raw: true });
+    expect(data).toBeTruthy();
   });
 });

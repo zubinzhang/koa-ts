@@ -2,9 +2,9 @@
  * Created by Zubin on 2017-10-30 17:15:44
  */
 
-import { RedisOptions } from 'ioredis'
-import { Options as seqOptions } from 'sequelize';
 import { ConnectionOptions } from 'amqp';
+import { RedisOptions } from 'ioredis';
+import { Options as seqOptions } from 'sequelize';
 
 /**
  * rabbitmq配置
@@ -35,13 +35,13 @@ export interface DBConfig {
 export interface IConfig {
   [x: string]: any;
   debug?: boolean;
-  name?: string,
+  name?: string;
   port: number;
   db: {
-    [x:string]: DBConfig;
+    [x: string]: DBConfig;
   };
   mongo?: {
-    [x:string]: string,
+    [x: string]: string;
   };
   redis?: RedisOptions;
   rabbitmq: RabbitMqConfig;
